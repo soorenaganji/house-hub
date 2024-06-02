@@ -1,3 +1,4 @@
+import SearchSection from "./SearchSection";
 const HeroSection = () => {
   return (
     <>
@@ -8,6 +9,7 @@ const HeroSection = () => {
         A great platform to buy, sell, or even rent your properties without any
         commisions.
       </p>
+      <SearchSection />
       </div>
     </>
   );
