@@ -5,15 +5,15 @@ import { useState } from "react";
 const Layout = () => {
   const [isNavBarOpen, setIsNavbarOpen] = useState(false);
   return (
-    <div className="transition-all duration-150 ">
+    <div className="transition-all duration-150 absolute top-0  w-full  ">
       <Header isNavBarOpen={isNavBarOpen} setIsNavbarOpen={setIsNavbarOpen} />
 
       <>
         <div
-          className={`h-screen w-[45%] fixed transition-size duration-150  right-0  border-l ${
+          className={`h-screen w-[45%] fixed transition-size duration-150 bg-white right-0  border-l ${
             isNavBarOpen
               ? "transition-all duration-150 "
-              : " w-[0.0001%] border-none "
+              : " w-[0.0001%] border-none bg-transparent"
           } `}
         >
           <div
