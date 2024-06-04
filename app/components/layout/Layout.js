@@ -5,40 +5,48 @@ import { useState } from "react";
 const Layout = () => {
   const [isNavBarOpen, setIsNavbarOpen] = useState(false);
   return (
-    <div className="transition-all duration-150 absolute top-0  w-full  ">
-      <Header isNavBarOpen={isNavBarOpen} setIsNavbarOpen={setIsNavbarOpen} />
+    <>
+      {" "}
+      <div className="transition-all duration-150 absolute top-0  w-full  ">
+        <Header isNavBarOpen={isNavBarOpen} setIsNavbarOpen={setIsNavbarOpen} />
 
-      <>
         <div
-          className={`h-screen w-[45%] fixed transition-size duration-150 bg-white right-0  border-l ${
-            isNavBarOpen
-              ? "transition-all duration-150 "
-              : " w-[0.0001%] border-none bg-transparent"
-          } `}
+          className={` absolute transition-all duration-150 overflow-hidden  right-0  border-l ${
+            isNavBarOpen ? "bg-[#00000072] h-screen w-screen " : "border-none  bg-transparent h-0"
+          }
+        `}
         >
           <div
-            className={`flex flex-col gap-4 px-4 transition-all duration-150 pt-8 ${
-              isNavBarOpen ? "" : "hidden"
+            className={` absolute bg-white right-0 transition-all duration-150  border-l ${
+              isNavBarOpen
+                ? "h-screen w-[45%]right-0 "
+                : "  border-none bg-transparent -right-80 "
             } `}
           >
-            <Link
-              href={"/"}
-              className="bg-primary text-white w-20 h-10 mx-auto flex items-center justify-center rounded-md "
+            <div
+              className={`flex flex-col gap-4 px-4 transition-all duration-150 pt-8 ${
+                isNavBarOpen ? "" : "hidden"
+              } `}
             >
-              Login
-            </Link>
-            <Link href={"/"} className="text-primary mx-auto">
-              Signup
-            </Link>
-            <Link href={"/"}>Rent</Link>
-            <Link href={"/"}>Buy</Link>
-            <Link href={"/"}>Sell</Link>
-            <Link href={"/"}>ManageProperty</Link>
-            <Link href={"/"}>Resources</Link>
+              <Link
+                href={"/"}
+                className="bg-primary text-white w-20 h-10 mx-auto flex items-center justify-center rounded-md "
+              >
+                Login
+              </Link>
+              <Link href={"/"} className="text-primary mx-auto">
+                Signup
+              </Link>
+              <Link href={"/"}>Rent</Link>
+              <Link href={"/"}>Buy</Link>
+              <Link href={"/"}>Sell</Link>
+              <Link href={"/"}>ManageProperty</Link>
+              <Link href={"/"}>Resources</Link>
+            </div>
           </div>
         </div>
-      </>
-    </div>
+      </div>
+    </>
   );
 };
 

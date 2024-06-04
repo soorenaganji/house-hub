@@ -1,16 +1,43 @@
 "use client";
 import Image from "next/image";
 import logo from "public/Frame.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 const Header = ({ isNavBarOpen, setIsNavbarOpen }) => {
   const toggleNavBar = () => {
     setIsNavbarOpen((isNavbarOpen) => !isNavbarOpen);
   };
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
-    <header className="flex justify-between px-4 py-4 items-center border-b overflow-x-hidden overflow-y-visible w-full  bg-[#ffffff85] ">
+    <header
+      className={`flex justify-between px-4 py-4 items-center transition-all duration-350 w-full    ${
+        isScrolled ? "bg-[#ffffff] shadow-md" : "bg-[#ffffff85]"
+      } `}
+    >
       <div className="flex items-center justify-center gap-[1px] ">
-        <Image src={logo} width={32} height={32} className="w-8 h-8" alt="HouseHub" />
+        <Image
+          src={logo}
+          width={32}
+          height={32}
+          className="w-8 h-8"
+          alt="HouseHub"
+        />
         <p className="font-semibold relative top-[1.5px]">HouseHub</p>
       </div>
       <button className="w-10 h-10  px-2 " onClick={toggleNavBar}>
