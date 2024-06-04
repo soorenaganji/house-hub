@@ -1,5 +1,5 @@
 import Image from "next/image";
-const NumbersSection = ({ icon, title, description }) => {
+const NumbersBox = ({ icon, title, description }) => {
   return (
     <div>
       <Image
@@ -17,4 +17,4 @@ const NumbersSection = ({ icon, title, description }) => {
   );
 };
 
-export default NumbersSection;
+export default NumbersBox;

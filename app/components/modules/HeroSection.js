@@ -1,5 +1,5 @@
-import SearchSection from "./SearchSection";
-import NumbersSection from "./NumbersSection";
+import SearchBox from "./SearchBox";
+import NumbersBox from "./NumbersBox";
 import icon from "public/icon.svg";
 import icon2 from "public/icon2.svg";
 const HeroSection = () => {
@@ -12,14 +12,14 @@ const HeroSection = () => {
         A great platform to buy, sell, or even rent your properties without any
         commisions.
       </p>
-      <SearchSection />
+      <SearchBox />
       <div className="flex items-center justify-between mt-16">
-        <NumbersSection
+        <NumbersBox
           icon={icon}
           title={"50k+ renters"}
           description={"believe in our service"}
         />
-        <NumbersSection
+        <NumbersBox
           icon={icon2}
           title={"10k+ properties"}
           description={"ready for occupancy"}
