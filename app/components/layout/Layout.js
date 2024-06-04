@@ -7,12 +7,14 @@ const Layout = () => {
   return (
     <>
       {" "}
-      <div className="transition-all duration-150 absolute top-0  w-full  ">
+      <div className="transition-all duration-150 fixed z-50 top-0  w-full  ">
         <Header isNavBarOpen={isNavBarOpen} setIsNavbarOpen={setIsNavbarOpen} />
 
         <div
           className={` absolute transition-all duration-150 overflow-hidden  right-0  border-l ${
-            isNavBarOpen ? "bg-[#00000072] h-screen w-screen " : "border-none  bg-transparent h-0"
+            isNavBarOpen
+              ? "bg-[#00000072] h-screen w-screen "
+              : "border-none  bg-transparent h-0"
           }
         `}
         >
