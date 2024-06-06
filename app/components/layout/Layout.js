@@ -2,7 +2,8 @@
 import Header from "./Header";
 import Link from "next/link";
 import { useState } from "react";
-const Layout = () => {
+import Footer from "./Footer";
+const Layout = ({ children }) => {
   const [isNavBarOpen, setIsNavbarOpen] = useState(false);
   return (
     <>
@@ -48,6 +49,8 @@ const Layout = () => {
           </div>
         </div>
       </div>
+      {children}
+      <Footer />
     </>
   );
 };
