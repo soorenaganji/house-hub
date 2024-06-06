@@ -28,7 +28,7 @@ const Header = ({ isNavBarOpen, setIsNavbarOpen }) => {
     <header
       className={`flex justify-between px-4 py-4 items-center transition-all duration-350 w-full    ${
         isScrolled ? "bg-[#ffffff] shadow-md" : "bg-[#ffffff85]"
-      } `}
+      } ${isNavBarOpen ? "shadow-md" : ""} `}
     >
       <div className="flex items-center justify-center gap-[1px] ">
         <Image
