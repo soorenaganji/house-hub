@@ -15,7 +15,7 @@ const CallToActionBox  = () => {
           Browse Properties
         </button>
       </div>
-       <Image src={banner} width={"100%"} height={262} className="" />
+       <Image src={banner} width={"100%"} height={262} className="w-full" />
     </div>
   );
 };
