@@ -2,7 +2,7 @@
 import { Redirect } from "next";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
-const page = () => {
+const Page = () => {
     useEffect(() => {
         redirect("/dashboard/add-post")
     } , [])
@@ -12,4 +12,4 @@ const page = () => {
     );
 }
 
-export default page;
+export default Page;
