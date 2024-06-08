@@ -3,6 +3,5 @@
 @tailwind utilities;
 
 body {
-  max-width: 1200px;
   font-family: "Plus Jakarta Sans", sans-serif !important ;
 }
