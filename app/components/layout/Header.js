@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import logo from "public/Frame.png";
 import { useState, useEffect } from "react";
-import Link from "next/link";
 const Header = ({ isNavBarOpen, setIsNavbarOpen }) => {
   const toggleNavBar = () => {
     setIsNavbarOpen((isNavbarOpen) => !isNavbarOpen);
@@ -30,7 +30,7 @@ const Header = ({ isNavBarOpen, setIsNavbarOpen }) => {
         isScrolled ? "bg-[#ffffff] shadow-md" : "bg-[#ffffff85]"
       } ${isNavBarOpen ? "shadow-md" : ""} `}
     >
-      <div className="flex items-center justify-center gap-[1px] ">
+      <Link href={"/"} className="flex items-center justify-center gap-[1px] ">
         <Image
           src={logo}
           width={32}
@@ -39,7 +39,7 @@ const Header = ({ isNavBarOpen, setIsNavbarOpen }) => {
           alt="HouseHub"
         />
         <p className="font-semibold relative top-[1.5px]">HouseHub</p>
-      </div>
+      </Link>
       <button className="w-10 h-10  px-2 " onClick={toggleNavBar}>
         <div
           className={`w-6 h-[2px] rounded-full bg-black transition-all duration-150 ${

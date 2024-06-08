@@ -45,7 +45,7 @@ const socialMediaLinks = [
 
 const Footer = () => {
   return (
-    <footer className="bg-white py-10">
+    <footer className="bg-white py-10 border-t mt-16">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-between">
           <div>
@@ -81,7 +81,7 @@ const Footer = () => {
           <p className="text-gray-500 text-sm">
             &copy;2024 HouseHub. All rights reserved
           </p>
-          <div className="flex gap- mt-4">
+          <div className="flex gap-8 mt-4">
             {socialMediaLinks.map(({ icon, ariaLabel }) => (
               <a
                 key={ariaLabel}
