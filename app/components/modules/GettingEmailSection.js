@@ -8,7 +8,7 @@ const GettingEmailSection = () => {
         Are you a landlord?
       </h5>
       <p className="text-[#D3D5DA]  text-center font-light mb-12">
-        Discover ways to increase your home's value and get listed. No Spam.
+        Discover ways to increase your home&apos;s value and get listed. No Spam.
       </p>
       <form className="w-full flex flex-col justify-center items-center">
         <input
@@ -29,10 +29,10 @@ const GettingEmailSection = () => {
       <p className="text-center text-[#9EA3AE] mt-6  " >
         Join
         <span className="text-white" >10,000+ </span>
-        other landlords in our estatery community.
+        other landlords in our HouseHub community.
       </p>
     </div>
-  );
+  ); 
 };
 
 export default GettingEmailSection;

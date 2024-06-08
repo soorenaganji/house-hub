@@ -5,7 +5,7 @@ import { useEffect } from "react";
 const page = () => {
     useEffect(() => {
         redirect("/dashboard/add-post")
-    } , )
+    } , [])
     return (
         <div>
         </div>
