@@ -17,7 +17,7 @@ const SearchBox = () => {
           <button
             key={field}
             onClick={() => handleFieldClick(field)}
-            className={`pb-2 ${
+            className={`pb-2 px-1 transition-all duration-150 ${
               selectedField === field ? 'border-b-2 border-primary' : ''
             }`}
           >
@@ -31,7 +31,7 @@ const SearchBox = () => {
           placeHolder="Search Location"
           selectedField={selectedField}
         />
-        <button className="bg-primary h-12 w-12 rounded-md text-white text-2xl flex items-center justify-center">
+        <button className="bg-primary h-12 w-12 rounded-md text-white text-2xl flex items-center justify-center" type={"submit"} >
           <LuSearch />
         </button>
       </div>
