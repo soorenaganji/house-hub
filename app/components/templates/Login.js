@@ -37,7 +37,7 @@ const Login = () => {
         redirect: false,
       }).then((res) => {
         console.log(res);
-        if (!res.error) {
+        if (res.status === 200) {
           router.push("/");
           toast.success("You Logged In successfully");
         } else {

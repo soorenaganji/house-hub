@@ -72,7 +72,6 @@ const Signup = () => {
         toast.success("You Signed Up Successfully");
 
         // Automatically log in the user
-        
         const { data } =  res.config;
         const loginData = JSON.parse(data)
         console.log(loginData)
