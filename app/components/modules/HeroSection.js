@@ -1,7 +1,7 @@
 import SearchBox from "./SearchBox";
 import NumbersBox from "./NumbersBox";
-import icon1 from "public/icon1.png";
-import icon2 from "public/icon2.png";
+import number1 from "public/number1.png";
+import number2 from "public/number2.png";
 const HeroSection = () => {
   return (
     <>
@@ -15,12 +15,12 @@ const HeroSection = () => {
       <SearchBox />
       <div className="flex items-center justify-between mt-16">
         <NumbersBox
-          icon={icon1}
+          icon={number1}
           title={"50k+ renters"}
           description={"believe in our service"}
         />
         <NumbersBox
-          icon={icon2}
+          icon={number2}
           title={"10k+ properties"}
           description={"ready for occupancy"}
         />
