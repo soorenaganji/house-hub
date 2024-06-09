@@ -1,7 +1,7 @@
 import SearchBox from "./SearchBox";
 import NumbersBox from "./NumbersBox";
-import icon from "public/icon.svg";
-import icon2 from "public/icon2.svg";
+import icon from "@/public/icon.svg";
+import icon2 from "@/public/icon2.svg";
 const HeroSection = () => {
   return (
     <>
