@@ -11,12 +11,9 @@ const DashBoardSidebar = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleSignOut = async (e) => {
     e.preventDefault()
-    toast.promise(() => signOut({ redirect: false }), {
-      loading: "Signing out...",
-      success: "Signed out successfully!",
-      error: "Sign out failed!",
-    });
-   await router.push("/")
+    await signOut({ redirect: false })
+    toast.success("LogOut Successful")
+    router.push("/")
   };
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
