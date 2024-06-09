@@ -1,3 +1,4 @@
+"use client"
 import { useState } from 'react';
 import { LuSearch } from 'react-icons/lu';
 import SearchBar from '../elements/SearchBar';
