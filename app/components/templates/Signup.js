@@ -64,7 +64,6 @@ const Signup = () => {
       toast.error("Please fix the errors before submitting");
     } else {
       try {
-
         const res = await createUser(finalUserData);
         let toastId = toast.loading("Signing you up...");
         console.log(res);
@@ -72,13 +71,12 @@ const Signup = () => {
         toast.success("You Signed Up Successfully");
 
         // Automatically log in the user
-        const { data } =  res.config;
-        const loginData = JSON.parse(data)
-        console.log(loginData)
-        signIn("credentials", { ...loginData , redirect: false });
+        const { data } = res.config;
+        const loginData = JSON.parse(data);
+        console.log(loginData);
+        signIn("credentials", { ...loginData, redirect: false });
         router.push("/");
       } catch (err) {
-
         console.error(err);
         toast.dismiss(err?.message);
         toast.error(err.response?.data?.message || "Sign up failed");
@@ -94,7 +92,7 @@ const Signup = () => {
         </h2>
         <p className="text-start">
           Already Have An Account?{" "}
-          <Link href="/login" className="underline text-[#5142FF]">
+          <Link href="/login" className="underline text-primary">
             Log In
           </Link>
         </p>
@@ -109,7 +107,7 @@ const Signup = () => {
               name="name"
               type="text"
               placeholder="Name"
-              className={`lg:w-44 w-36 h-14 lg:text-lg placeholder:text-slate-500 focus:border-[#675aff] focus:shadow-md p-2 rounded-md border outline-none ${
+              className={`lg:w-44 w-36 h-14 lg:text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-2 rounded-md border outline-none ${
                 errors.name && touched.name
                   ? "border-red-400"
                   : "border-slate-300"
@@ -121,7 +119,7 @@ const Signup = () => {
               name="lastName"
               type="text"
               placeholder="Last Name"
-              className={`lg:w-44 w-36 h-14 lg:text-lg placeholder:text-slate-500 focus:border-[#675aff] focus:shadow-md p-2 rounded-md border outline-none ${
+              className={`lg:w-44 w-36 h-14 lg:text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-2 rounded-md border outline-none ${
                 errors.lastName && touched.lastName
                   ? "border-red-400"
                   : "border-slate-300"
@@ -138,7 +136,7 @@ const Signup = () => {
             name="Email"
             type="email"
             placeholder="Email"
-            className={`w-80 lg:w-96 h-14 text-lg placeholder:text-slate-500 focus:border-[#675aff] focus:shadow-md p-4 rounded-md border outline-none ${
+            className={`w-80 lg:w-96 h-14 text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-4 rounded-md border outline-none ${
               errors.Email && touched.Email
                 ? "border-red-400"
                 : "border-slate-300"
@@ -153,7 +151,7 @@ const Signup = () => {
             name="Password"
             type="password"
             placeholder="Password"
-            className={`w-80 lg:w-96 h-14 text-lg placeholder:text-slate-500 focus:border-[#675aff] focus:shadow-md p-4 rounded-md border outline-none ${
+            className={`w-80 lg:w-96 h-14 text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-4 rounded-md border outline-none ${
               errors.Password && touched.Password
                 ? "border-red-400"
                 : "border-slate-300"
@@ -168,7 +166,7 @@ const Signup = () => {
             name="Password2"
             type="password"
             placeholder="Confirm Password"
-            className={`w-80 lg:w-96 h-14 text-lg placeholder:text-slate-500 focus:border-[#675aff] focus:shadow-md p-4 rounded-md border outline-none ${
+            className={`w-80 lg:w-96 h-14 text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-4 rounded-md border outline-none ${
               errors.Password2 && touched.Password2
                 ? "border-red-400"
                 : "border-slate-300"
@@ -181,8 +179,8 @@ const Signup = () => {
             type="submit"
             className={`w-80 lg:w-96 h-14 text-lg p-2 rounded-lg text-white transition-all duration-400 ${
               Object.keys(errors).length
-                ? "bg-[#7265ff9a]"
-                : "bg-[#675aff] hover:shadow-lg hover:shadow-[#685aff96]"
+                ? "bg-primary opacity-60"
+                : "bg-primary hover:shadow-lg hover:shadow-primary/60"
             }`}
           >
             Sign Up

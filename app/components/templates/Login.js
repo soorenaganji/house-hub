@@ -60,7 +60,7 @@ const Login = () => {
         </h2>
         <p>
           Don&apos;t have an Account?{" "}
-          <Link href={"/signup"} className="underline text-[#5142FF]">
+          <Link href={"/signup"} className="underline text-primary">
             Sign Up
           </Link>{" "}
         </p>
@@ -70,7 +70,7 @@ const Login = () => {
             name="email"
             type="email"
             placeholder="Email"
-            className={`lg:w-96 w-72 h-14 lg:text-lg placeholder:text-slate-500 focus:border-[#675aff] focus:shadow-md  p-4 rounded-md border outline-none `}
+            className={`lg:w-96 w-72 h-14 lg:text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-4 rounded-md border outline-none `}
           />
         </div>
         <div className="mx-auto">
@@ -79,12 +79,12 @@ const Login = () => {
             name="password"
             type="password"
             placeholder="Password"
-            className={`lg:w-96 w-72 h-14 lg:text-lg placeholder:text-slate-500 focus:border-[#675aff] focus:shadow-md  p-4 rounded-md border outline-none `}
+            className={`lg:w-96 w-72 h-14 lg:text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-4 rounded-md border outline-none `}
           />
           <br />
         </div>
         <button
-          className={`lg:w-96 w-72 mx-auto h-14 lg:text-lg p-2 bg-[#5142FF] text-white rounded-lg hover:shadow-xl transition-all duration-400 hover:shadow-[#685aff96] `}
+          className={`lg:w-96 w-72 mx-auto h-14 lg:text-lg p-2 bg-primary text-white rounded-lg hover:shadow-xl transition-all duration-400 hover:shadow-primary/60`}
           onClick={submitHandler}
         >
           Log In
