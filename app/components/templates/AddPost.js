@@ -1,19 +1,26 @@
 "use client";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import axios from "axios";
-import toast from "react-hot-toast"; // Removed Toaster import
+import toast from "react-hot-toast";
+import { useDropzone } from "react-dropzone";
 import InputField from "app/components/elements/InputField";
 import TextareaField from "app/components/elements/TextAreaField";
 import { validateForm } from "@/app/helper/validate";
 import { LuPlus } from "react-icons/lu";
 import { IoTrashSharp } from "react-icons/io5";
+import { useRouter } from "next/navigation";
+import { CiImageOn } from "react-icons/ci";
 const AddPost = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     city: "",
     street: "",
     zipcode: "",
+    size: "",
+    bedroomsCount: "",
+    bathroomsCount: "",
     phoneNumber: "",
     email: "",
     rentalOrSell: "rental",
@@ -24,6 +31,7 @@ const AddPost = () => {
     rules: [],
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [images, setImages] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,6 +45,11 @@ const AddPost = () => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       rentalOrSell: prevFormData.rentalOrSell === "rental" ? "sell" : "rental",
+      mortgage:
+        prevFormData.rentalOrSell === "rental" ? "" : prevFormData.mortgage,
+      deposit:
+        prevFormData.rentalOrSell === "rental" ? "" : prevFormData.deposit,
+      price: prevFormData.rentalOrSell === "sell" ? "" : prevFormData.price,
     }));
   };
 
@@ -80,6 +93,21 @@ const AddPost = () => {
     }));
   };
 
+  const onDrop = useCallback((acceptedFiles) => {
+    setImages((prevImages) => [
+      ...prevImages,
+      ...acceptedFiles.map((file) =>
+        Object.assign(file, {
+          preview: URL.createObjectURL(file),
+        })
+      ),
+    ]);
+  }, []);
+
+  const handleDeleteImage = (index) => {
+    setImages((prevImages) => prevImages.filter((_, i) => i !== index));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm(formData, toast)) return;
@@ -87,14 +115,32 @@ const AddPost = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await axios.post("/api/posts", formData);
+      const formDataToSend = new FormData();
+      Object.keys(formData).forEach((key) => {
+        formDataToSend.append(key, formData[key]);
+      });
+      images.forEach((image, index) => {
+        formDataToSend.append(`image${index}`, image);
+      });
+
+      const response = await axios.post("/api/profile", formDataToSend, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log(response);
       toast.success("Post created successfully!");
+      router.push("/dashboard/my-posts");
+
       setFormData({
         title: "",
         description: "",
         city: "",
         street: "",
         zipcode: "",
+        size: "",
+        bedroomsCount: "",
+        bathroomsCount: "",
         phoneNumber: "",
         email: "",
         rentalOrSell: "rental",
@@ -104,17 +150,65 @@ const AddPost = () => {
         facilities: [],
         rules: [],
       });
+      setImages([]);
     } catch (error) {
+      console.log(error);
       toast.error("Failed to create post.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: "image/*",
+  });
+
   return (
     <div className="p-4 mt-12">
       <h5 className="text-2xl font-extrabold mb-8 text-center">Add New Post</h5>
       <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Image Upload */}
+        <div className="space-y-4">
+          <h6 className="">Images</h6>
+          <div
+            {...getRootProps()}
+            className={`border-dashed border p-4 rounded-lg cursor-pointer ${
+              isDragActive ? "border-primary" : "border-gray-300"
+            }`}
+          >
+            <input {...getInputProps()} />
+            {isDragActive ? (
+              <div className="text-xs text-center">
+                <CiImageOn className="block text-8xl text-center mx-auto" />
+                <p>Drop the files here...</p>
+              </div>
+            ) : (
+              <div className="text-xs text-center">
+                <CiImageOn className="block text-8xl text-center mx-auto" />
+                <p> Drag files here, or click to select files</p>
+              </div>
+            )}
+          </div>
+          <div className="flex flex-wrap gap-4">
+            {images.map((image, index) => (
+              <div key={index} className="relative w-32 h-32">
+                <img
+                  src={image.preview}
+                  alt={`Preview ${index}`}
+                  className="w-full h-full object-cover rounded-lg"
+                />
+                <button
+                  type="button"
+                  onClick={() => handleDeleteImage(index)}
+                  className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full"
+                >
+                  <IoTrashSharp />
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
         {/* Title */}
         <InputField
           label="Title"
@@ -154,11 +248,35 @@ const AddPost = () => {
           value={formData.zipcode}
           onChange={handleChange}
         />
+        {/* Size */}
+        <InputField
+          label="Size"
+          name="size"
+          type="number"
+          value={formData.size}
+          onChange={handleChange}
+        />
+        {/* Bedrooms Count */}
+        <InputField
+          label="Bedrooms"
+          name="bedroomsCount"
+          type="number"
+          value={formData.bedroomsCount}
+          onChange={handleChange}
+        />
+        {/* Bathrooms Count */}
+        <InputField
+          label="Bathrooms"
+          name="bathroomsCount"
+          type="number"
+          value={formData.bathroomsCount}
+          onChange={handleChange}
+        />
         {/* Phone Number */}
         <InputField
           label="Phone Number"
           name="phoneNumber"
-          type="text"
+          type="number"
           value={formData.phoneNumber}
           onChange={handleChange}
         />
@@ -194,7 +312,7 @@ const AddPost = () => {
           <InputField
             label="Deposit"
             name="deposit"
-            type="text"
+            type="number"
             value={formData.deposit}
             onChange={handleChange}
           />
@@ -204,7 +322,7 @@ const AddPost = () => {
           <InputField
             label="Mortgage per month"
             name="mortgage"
-            type="text"
+            type="number"
             value={formData.mortgage}
             onChange={handleChange}
           />
@@ -214,7 +332,7 @@ const AddPost = () => {
           <InputField
             label="Price"
             name="price"
-            type="text"
+            type="number"
             value={formData.price}
             onChange={handleChange}
           />
@@ -226,7 +344,7 @@ const AddPost = () => {
             <button
               type="button"
               onClick={handleAddFacility}
-              className="border border-primary  px-3 py-2 rounded-lg flex items-center space-x-2"
+              className="border border-primary px-3 py-2 rounded-lg flex items-center space-x-2"
             >
               <LuPlus /> Add Facility
             </button>
@@ -247,7 +365,7 @@ const AddPost = () => {
               <button
                 type="button"
                 onClick={() => handleDeleteFacility(index)}
-                className="bg-red-500 text-white p-3 text-lg -mb-1  rounded-lg "
+                className="bg-red-500 text-white p-3 text-lg -mb-1 rounded-lg"
               >
                 <IoTrashSharp />
               </button>
@@ -261,13 +379,13 @@ const AddPost = () => {
             <button
               type="button"
               onClick={handleAddRule}
-              className=" border border-primary  px-3 py-2 rounded-lg flex items-center space-x-2"
+              className="border border-primary px-3 py-2 rounded-lg flex items-center space-x-2"
             >
               <LuPlus /> Add Rule
             </button>
           </div>
           {formData.rules.map((rule, index) => (
-            <div key={index} className="flex items-center space-x-2">
+            <div key={index} className="flex items-center justify-start gap-2">
               <InputField
                 value={rule}
                 onChange={(e) => {
@@ -282,7 +400,7 @@ const AddPost = () => {
               <button
                 type="button"
                 onClick={() => handleDeleteRule(index)}
-                className="bg-red-500 text-white p-3 text-lg -mb-1  rounded-lg "
+                className="bg-red-500 text-white p-3 text-lg -mb-1 rounded-lg"
               >
                 <IoTrashSharp />
               </button>
