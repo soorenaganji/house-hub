@@ -85,12 +85,12 @@ const Signup = () => {
   };
 
   return (
-    <main className="w-full mt-24 transition-all duration-400 flex items-center justify-center">
-      <div className="flex flex-col items-center justify-center gap-8">
-        <h2 className="text-3xl lg:text-5xl font-bold text-center">
+    <main className="w-full mt-12 transition-all duration-400 flex items-center justify-center px-4">
+      <div className="flex flex-col items-center justify-center gap-6 max-w-md w-full">
+        <h2 className="text-2xl lg:text-5xl font-bold text-center">
           Create New Account
         </h2>
-        <p className="text-start">
+        <p className="text-center">
           Already Have An Account?{" "}
           <Link href="/login" className="underline text-primary">
             Log In
@@ -98,16 +98,16 @@ const Signup = () => {
         </p>
         <form
           onSubmit={submitHandler}
-          className="flex flex-col items-center gap-8"
+          className="flex flex-col items-center gap-6 w-full"
         >
-          <div className="flex flex-col lg:flex-row gap-8">
+          <div className="flex flex-col gap-6 w-full">
             <input
               onChange={changeHandler}
               onFocus={touchHandler}
               name="name"
               type="text"
               placeholder="Name"
-              className={`lg:w-44 w-36 h-14 lg:text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-2 rounded-md border outline-none ${
+              className={`w-full h-12 lg:h-14 lg:text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-2 rounded-md border outline-none ${
                 errors.name && touched.name
                   ? "border-red-400"
                   : "border-slate-300"
@@ -119,7 +119,7 @@ const Signup = () => {
               name="lastName"
               type="text"
               placeholder="Last Name"
-              className={`lg:w-44 w-36 h-14 lg:text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-2 rounded-md border outline-none ${
+              className={`w-full h-12 lg:h-14 lg:text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-2 rounded-md border outline-none ${
                 errors.lastName && touched.lastName
                   ? "border-red-400"
                   : "border-slate-300"
@@ -136,7 +136,7 @@ const Signup = () => {
             name="Email"
             type="email"
             placeholder="Email"
-            className={`w-80 lg:w-96 h-14 text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-4 rounded-md border outline-none ${
+            className={`w-full h-12 lg:h-14 lg:text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-4 rounded-md border outline-none ${
               errors.Email && touched.Email
                 ? "border-red-400"
                 : "border-slate-300"
@@ -151,7 +151,7 @@ const Signup = () => {
             name="Password"
             type="password"
             placeholder="Password"
-            className={`w-80 lg:w-96 h-14 text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-4 rounded-md border outline-none ${
+            className={`w-full h-12 lg:h-14 lg:text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-4 rounded-md border outline-none ${
               errors.Password && touched.Password
                 ? "border-red-400"
                 : "border-slate-300"
@@ -166,7 +166,7 @@ const Signup = () => {
             name="Password2"
             type="password"
             placeholder="Confirm Password"
-            className={`w-80 lg:w-96 h-14 text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-4 rounded-md border outline-none ${
+            className={`w-full h-12 lg:h-14 lg:text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-4 rounded-md border outline-none ${
               errors.Password2 && touched.Password2
                 ? "border-red-400"
                 : "border-slate-300"
@@ -177,7 +177,7 @@ const Signup = () => {
           </p>
           <button
             type="submit"
-            className={`w-80 lg:w-96 h-14 text-lg p-2 rounded-lg text-white transition-all duration-400 ${
+            className={`w-full h-12 lg:h-14 lg:text-lg p-2 rounded-lg text-white transition-all duration-400 ${
               Object.keys(errors).length
                 ? "bg-primary opacity-60"
                 : "bg-primary hover:shadow-lg hover:shadow-primary/60"
