@@ -39,7 +39,7 @@ const PostCard = ({
             <GoStarFill />
             POPULAR
           </div>
-          <div class="w-0 h-0 border-l-[10px] border-l-transparent  border-t-[10px] border-t-primary"></div>
+          <div className="w-0 h-0 border-l-[10px] border-l-transparent  border-t-[10px] border-t-primary"></div>
         </div>
       </div>
       <div className="p-4 mt-4">
