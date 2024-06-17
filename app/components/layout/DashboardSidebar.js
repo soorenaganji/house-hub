@@ -5,7 +5,7 @@ import { CiSquarePlus, CiBoxList, CiUser } from "react-icons/ci";
 import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
 import { useRouter } from 'next/navigation';
-
+import Link from "next/link"
 const DashBoardSidebar = ({ children }) => {
       const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,27 +42,27 @@ const DashBoardSidebar = ({ children }) => {
                 onClick={handleMenuItemClick}
               >
                 <CiUser className="text-lg" />
-                <a href="/dashboard/account" className="text-black">
+                <Link href="/dashboard/account" className="text-black">
                   Account
-                </a>
+                </Link>
               </li>
               <li
                 className="py-2 border-b border-gray-300 flex items-center gap-2 cursor-pointer"
                 onClick={handleMenuItemClick}
               >
                 <CiBoxList className="text-lg" />
-                <a href="/dashboard/my-posts" className="text-black">
+                <Link href="/dashboard/my-posts" className="text-black">
                   My Posts
-                </a>
+                </Link>
               </li>
               <li
                 className="py-2 border-b border-gray-300 flex items-center gap-2 cursor-pointer"
                 onClick={handleMenuItemClick}
               >
                 <CiSquarePlus className="text-lg" />
-                <a href="/dashboard/add-post" className="text-black">
+                <Link href="/dashboard/add-post" className="text-black">
                   Add Post
-                </a>
+                </Link>
               </li>
               <li
                 className="py-2 flex items-center gap-2 cursor-pointer"
