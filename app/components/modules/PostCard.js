@@ -25,7 +25,7 @@ const PostCard = ({
 }) => {
   console.log(size + "sth");
   return (
-    <div className="max-w-sm rounded-lg  shadow-lg bg-white">
+    <div className="max-w-[250px] rounded-lg   shadow-lg bg-white">
       <div className="relative">
         <Image
           src={imageUrl ? imageUrl : NoImage}
