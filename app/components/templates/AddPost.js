@@ -111,19 +111,12 @@ const AddPost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm(formData, toast)) return;
-
     setIsSubmitting(true);
-
     try {
-      const response = await axios.post("/api/profile", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post("/api/profile", formData);
       console.log(response);
       toast.success("Post created successfully!");
       router.push("/dashboard/my-posts");
-
       setFormData({
         title: "",
         description: "",
