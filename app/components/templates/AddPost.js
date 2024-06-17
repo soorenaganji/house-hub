@@ -115,15 +115,7 @@ const AddPost = () => {
     setIsSubmitting(true);
 
     try {
-      const formDataToSend = new FormData();
-      Object.keys(formData).forEach((key) => {
-        formDataToSend.append(key, formData[key]);
-      });
-      images.forEach((image, index) => {
-        formDataToSend.append(`image${index}`, image);
-      });
-
-      const response = await axios.post("/api/profile", formDataToSend, {
+      const response = await axios.post("/api/profile", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
