@@ -8,7 +8,6 @@ export async function POST(req) {
   try {
     await connectDB();
     const body = await req.json();
-    console.log(body);
     const {
       title,
       description,
@@ -26,6 +25,7 @@ export async function POST(req) {
       price,
       facilities,
       rules,
+      imageUrls
     } = body;
 
     const session = await getServerSession(req);
@@ -42,7 +42,6 @@ export async function POST(req) {
     }
     const userEmail = await session.user.email;
     const user = await User.findOne({ email: userEmail });
-    console.log(user);
     if (!user) {
       return NextResponse.json(
         {
@@ -64,7 +63,7 @@ export async function POST(req) {
       !rentalOrSell ||
       !bedroomsCount ||
       !bathroomsCount ||
-      !size
+      !size 
     ) {
       return NextResponse.json(
         {
@@ -111,6 +110,7 @@ export async function POST(req) {
       facilities,
       rules,
       userId: new Types.ObjectId(user._id),
+      imageUrls
     });
     console.log(newProfile);
     return NextResponse.json(
