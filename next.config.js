@@ -1,4 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
 
-module.exports = nextConfig
+module.exports = {
+  reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "buasqibyaroyxebuqtsw.supabase.co",
+        pathname: "/storage/v1/object/public/HouseHub/Posts/**",
+      },
+    ],
+  },
+};
