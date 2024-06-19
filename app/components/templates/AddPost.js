@@ -10,6 +10,8 @@ import { LuPlus } from "react-icons/lu";
 import { IoTrashSharp } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { CiImageOn } from "react-icons/ci";
+import { uploadImageToSupabase } from "@/app/helper/functions";
+
 const AddPost = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -107,13 +109,22 @@ const AddPost = () => {
   const handleDeleteImage = (index) => {
     setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm(formData, toast)) return;
     setIsSubmitting(true);
+
     try {
-      const response = await axios.post("/api/profile", formData);
+      // Upload images to Supabase
+      const imageUrls = await Promise.all(
+        images.map((image) => uploadImageToSupabase(image))
+      );
+
+      console.log(imageUrls)
+
+      // Add image paths to formData
+      const updatedFormData = { ...formData, imageUrls };
+      const response = await axios.post("/api/profile", updatedFormData);
       console.log(response);
       toast.success("Post created successfully!");
       router.push("/dashboard/my-posts");
