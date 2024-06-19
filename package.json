@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.43.5",
     "axios": "^1.7.2",
     "bcryptjs": "^2.4.3",
     "mongoose": "^8.4.1",
