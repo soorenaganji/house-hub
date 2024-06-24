@@ -6,7 +6,6 @@ import { LiaBedSolid } from "react-icons/lia";
 import Image from "next/image";
 import NoImage from "public/noPhoto.jpeg";
 import { formatNumber } from "@/app/helper/functions";
-import Link from "next/link";
 
 const PostCard = ({
   title,
