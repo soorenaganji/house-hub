@@ -15,7 +15,7 @@ const profileSchema = new Schema(
       required: true,
     },
     imageUrls: {
-      type: [String],
+      type: Array,
       required: false,
     },
     bathroomsCount: {
