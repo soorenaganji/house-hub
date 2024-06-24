@@ -23,7 +23,34 @@ const uploadImageToSupabase = async (file) => {
     // Generate the public URL
     const urlData = supabase.storage.from("HouseHub").getPublicUrl(filePath);
     console.log(urlData.data.publicUrl);
-    return urlData.data.publicUrl;
+    return urlData.data.publicUrl
   };
 
-export {formatNumber , uploadImageToSupabase}
+  const deleteImageFromSupabase = async (imageUrl) => {
+    try {
+      // Extract file path after 'HouseHub/'
+      const filePath = imageUrl.split('/HouseHub/')[1];
+      console.log('File path:', filePath); // Debug log
+  
+      if (!filePath) {
+        throw new Error('Invalid image URL');
+      }
+  
+      const { error } = await supabase.storage
+        .from('HouseHub')
+        .remove([filePath]);
+  
+      if (error) {
+        throw error;
+      }
+  
+      console.log('Image deleted successfully');
+    } catch (error) {
+      console.error('Error deleting image:', error.message);
+      throw new Error('Error deleting image');
+    }
+  };
+  
+
+
+export {formatNumber , uploadImageToSupabase , deleteImageFromSupabase}
