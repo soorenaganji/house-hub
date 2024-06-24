@@ -1,13 +1,13 @@
-import PostCard from "../modules/PostCard";
+import DashboardCard from "../modules/DashboardCard";
 
-const Posts = ({ posts }) => {
+const Posts = async ({ posts }) => {
   console.log(posts);
   return (
     <div className="w-full flex items-center justify-start flex-col-reverse gap-12 my-24 ">
-      {posts?.length ? (
+      {(await posts?.length) ? (
         posts.map((post) => (
           <>
-            <PostCard {...post} />
+            <DashboardCard data={post} />
           </>
         ))
       ) : (
