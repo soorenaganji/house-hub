@@ -1,5 +1,5 @@
 import PostCard from "./PostCard";
-
+import Link from "next/link";
 const PublicCard = ({ data }) => {
   return (
     <div className="max-w-[250px] rounded-lg shadow-lg bg-white">
