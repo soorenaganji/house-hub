@@ -1,5 +1,4 @@
 "use client"
-import { Redirect } from "next";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
 const Page = () => {
