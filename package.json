@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.43.5",
+    "aos": "^2.3.4",
     "axios": "^1.7.2",
     "bcryptjs": "^2.4.3",
     "bufferutil": "^4.0.8",

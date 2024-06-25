@@ -6,3 +6,10 @@ body {
   font-family: "Plus Jakarta Sans", sans-serif !important ;
   background-color: white;
 }
+
+/* styles.css */
+.gradient-text {
+  background: linear-gradient(to top, var(--tw-gradient-stops));
+  -webkit-background-clip: text;
+  color: transparent;
+}

@@ -4,16 +4,16 @@ import { MdSpaceDashboard, MdOutlineLogout } from "react-icons/md";
 import { CiSquarePlus, CiBoxList, CiUser } from "react-icons/ci";
 import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
-import { useRouter } from 'next/navigation';
-import Link from "next/link"
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 const DashBoardSidebar = ({ children }) => {
-      const router = useRouter();
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleSignOut = async (e) => {
-    e.preventDefault()
-    await signOut({ redirect: false })
-    toast.success("LogOut Successful")
-    router.push("/")
+    e.preventDefault();
+    await signOut({ redirect: false });
+    toast.success("LogOut Successful");
+    router.push("/");
   };
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -28,9 +28,9 @@ const DashBoardSidebar = ({ children }) => {
       <div className="relative ">
         <button
           onClick={handleMenuToggle}
-          className="p-2 border rounded-md flex items-center justify-center gap-2 float-left hover:border-primary hover:shadow-md transition-all duration-150"
+          className="p-2 border rounded-xl flex items-center group justify-center gap-2 float-left hover:bg-primary hover:shadow-indigo-200 hover:text-white hover:border-none  hover:shadow-lg transition-all duration-150"
         >
-          <MdSpaceDashboard className="text-2xl text-primary" />
+          <MdSpaceDashboard className="text-2xl text-primary group-hover:text-white" />
           Dashboard Menu
         </button>
 
