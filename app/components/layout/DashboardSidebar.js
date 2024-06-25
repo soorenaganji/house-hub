@@ -114,7 +114,7 @@ const DashBoardSidebar = ({ children }) => {
           </div>
         )}
       </div>
-      <div onClick={handleMenuToggle}>{children}</div>
+      <div onClick={() => setIsMenuOpen(false)}>{children}</div>
     </div>
   );
 };
