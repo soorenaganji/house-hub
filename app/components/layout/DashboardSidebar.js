@@ -10,10 +10,47 @@ const DashBoardSidebar = ({ children }) => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleSignOut = async (e) => {
-    e.preventDefault();
-    await signOut({ redirect: false });
-    toast.success("LogOut Successful");
-    router.push("/");
+    let isUserSure = false;
+    const handleUserConfirmation = async (t, confirmation) => {
+      toast.dismiss(t.id);
+      isUserSure = confirmation;
+      if (isUserSure) {
+        await signOut({ redirect: false });
+        toast.success("LogOut Successful");
+        router.push("/");
+        e.preventDefault();
+      }
+    };
+
+    toast.custom((t) => (
+      <div
+        className={`${
+          t.visible ? "animate-enter" : "animate-leave"
+        } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+      >
+        <div className="flex-1 w-0 p-4">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-medium text-gray-900">
+              Are you sure you want to Log out ?
+            </span>
+            <div className="ml-4 flex-shrink-0 flex space-x-2">
+              <button
+                onClick={() => handleUserConfirmation(t, true)}
+                className=" rounded-md p-2 flex items-center justify-center text-sm font-medium text-red-600 hover:text-red-500 focus:outline-none "
+              >
+                Log Out
+              </button>
+              <button
+                onClick={() => handleUserConfirmation(t, false)}
+                className=" rounded-md p-2 flex items-center justify-center text-sm font-medium text-primary hover:text-indigo-300 focus:outline-none "
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    ));
   };
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -35,7 +72,7 @@ const DashBoardSidebar = ({ children }) => {
         </button>
 
         {isMenuOpen && (
-          <div className="absolute top-16 -left-2 w-48 bg-white shadow-lg rounded-md p-4 z-50 transition-all duration-300 ease-in-out">
+          <div className="absolute top-16 -left-2 w-48 bg-transparent backdrop-blur-xl border border-white bg-white bg-opacity-65 shadow-lg rounded-md p-4 z-50 transition-all duration-300 ease-in-out">
             <ul>
               <li
                 className="py-2 border-b border-gray-300 flex items-center gap-2 cursor-pointer"
@@ -77,7 +114,7 @@ const DashBoardSidebar = ({ children }) => {
           </div>
         )}
       </div>
-      {children}
+      <div onClick={handleMenuToggle}>{children}</div>
     </div>
   );
 };
