@@ -5,11 +5,11 @@ import toast from "react-hot-toast";
 import { deletePost } from "@/app/apiCalls/post";
 const DashboardCard = ({ data }) => {
   const handlePostDelete = async () => {
-    let isUserSure = false
-     const handleUserConfirmation = async (t , confirmation) => {
+    let isUserSure = false;
+    const handleUserConfirmation = async (t, confirmation) => {
       toast.dismiss(t.id);
       isUserSure = confirmation;
-      if(isUserSure){
+      if (isUserSure) {
         const response = await deletePost(data._id);
         if (response.data.error) {
           toast.error(response.data.error);
@@ -17,8 +17,8 @@ const DashboardCard = ({ data }) => {
           toast.success("Post deleted successfully");
         }
       }
-     }
-     toast.custom((t) => (
+    };
+    toast.custom((t) => (
       <div
         className={`${
           t.visible ? "animate-enter" : "animate-leave"
@@ -52,17 +52,23 @@ const DashboardCard = ({ data }) => {
   return (
     <div className="max-w-[250px] rounded-lg shadow-lg bg-white">
       <PostCard {...postCardData} />
-      <div className="flex items-center justify-between px-4 pb-2">
+      <div className="flex items-center justify-center px-4 pb-2">
         <Link
           href={`/dashboard/my-posts/edit/${data._id}`}
-          className="px-3 py-2 bg-green-500 text-white rounded-lg flex items-center justify-start "
+          className="px-3 py-2 flex-shrink-0 text-sm border-green-600 text-green-600 border   rounded-l-lg flex items-center justify-start hover:text-white hover:bg-green-600 transition-all duration-150  "
         >
           {" "}
           Edit
         </Link>
+        <Link
+          href={"/"}
+          className="px-3 py-2 flex-shrink-0 text-sm border-blue-500 border-t border-b   text-blue-500  flex items-center justify-start hover:text-white hover:bg-blue-500 transition-all duration-150 "
+        >
+          Preview
+        </Link>
         <button
           onClick={handlePostDelete}
-          className="px-3 py-2 bg-red-500 text-white rounded-lg flex items-center justify-start "
+          className="px-3 py-2 flex-shrink-0 text-sm border-red-500 border text-red-500 rounded-r-lg flex items-center justify-start hover:text-white hover:bg-red-500 transition-all duration-150  "
         >
           {" "}
           Delete

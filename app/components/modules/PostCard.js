@@ -28,16 +28,26 @@ const PostCard = ({
   size,
   userId,
 }) => {
-  const handleImageUrl =() => {
-if(imageUrls && imageUrls[0] && imageUrls[0] !== "h"){
-return `${imageUrls[0]}`
-}else{
-return NoImage
-}
-  }
+  const handleImageUrl = () => {
+    if (imageUrls && imageUrls[0] && imageUrls[0] !== "h") {
+      return `${imageUrls[0]}`;
+    } else {
+      return NoImage;
+    }
+  };
   return (
     <>
       <div className="">
+        <div className="relative w-24  top-8 -mt-2">
+          <div
+            className={`bg-white/80 backdrop-blur-lg ${
+              price ? "text-primary" : "text-secondary"
+            }  px-3 py-1 text-xs rounded-r-lg flex items-center justify-center gap-2`}
+          >
+            <GoStarFill />
+            {price ? "For Sale" : "For Rent"}
+          </div>
+        </div>
         <Image
           src={handleImageUrl()}
           alt={title}
@@ -48,25 +58,36 @@ return NoImage
       </div>
       <div className="p-4">
         <div className="text-primary font-extrabold text-lg flex items-center justify-start">
-          ${price ? formatNumber(price) : formatNumber(deposit)}{" "}
-          <p
-            className={
-              price
-                ? "p-1 rounded-md text-black ml-6 text-xs font-light bg-indigo-200"
-                : "ml-8 text-slate-600 font-semibold "
-            }
-          >
-            {price ? "For Sale" : "$" + formatNumber(++mortgage) + "/month"}
+          {price ? (
+            "$" + formatNumber(price)
+          ) : (
+            <span className="text-secondary">${formatNumber(deposit)}</span>
+          )}{" "}
+          <p className={price ? "" : "ml-8 text-slate-600 font-semibold "}>
+            {price ? (
+              ""
+            ) : (
+              <span className="">
+                {"$" + formatNumber(++mortgage) + "/month"}
+              </span>
+            )}
           </p>
         </div>
         <div className="font-bold text-xl my-2">{title}</div>
         <div className="text-gray-500 mb-3">{city}</div>
         <div className="flex items-center text-gray-700 text-sm pb-2 border-b">
-          <LiaBedSolid className="mr-2 text-primary" />{" "}
+          <LiaBedSolid
+            className={`mr-2 ${price ? "text-primary" : "text-secondary"}`}
+          />{" "}
           {bedroomsCount ? bedroomsCount : 2}
-          <BiBath className="ml-4 mr-2 text-primary" />{" "}
+          <BiBath
+            className={`ml-4 mr-2 ${price ? "text-primary" : "text-secondary"}`}
+          />{" "}
           {bathroomsCount ? bathroomsCount : 1}
-          <TbSquareRotated className="ml-4 mr-2 text-primary" /> {size} m²
+          <TbSquareRotated
+            className={`ml-4 mr-2 ${price ? "text-primary" : "text-secondary"}`}
+          />{" "}
+          {size} m²
         </div>
       </div>
     </>

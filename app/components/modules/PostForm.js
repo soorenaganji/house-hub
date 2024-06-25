@@ -235,26 +235,26 @@ const PostForm = ({
         onChange={handleChange}
       />
       {/* Rental or Sell */}
-      <div className="flex items-center space-x-2">
-        <div
-          className={`relative inline-block w-32 h-16 bg- rounded-xl cursor-pointer transition-all duration-150 bg-gradient-to-br ${
-            formData.rentalOrSell === "rental"
-              ? " bg-gradient-to-tl to-[#100A55]  from-primary"
-              : " bg-gradient-to-br to-primary  from-[#100A55]"
-          }`}
-          onClick={handleSwitchToggle}
-        >
-          <div
-            className={`absolute top-1 left-1 w-14 h-14 text-white rounded-xl flex items-center justify-center transition-all ${
-              formData.rentalOrSell === "rental"
-                ? "transform translate-x-0 bg-primary"
-                : "transform translate-x-16 bg-[#100A55]"
-            }`}
-          >
-            {formData.rentalOrSell === "rental" ? "Rent" : "Sale"}
-          </div>
-        </div>
-      </div>
+      <div className="flex items-center space-x-4">
+      <button
+        className={`w-16 h-16 rounded-xl transition-all duration-150 
+          ${formData.rentalOrSell === 'rental' ? 'bg-secondary shadow-lg shadow-secondary/80 text-white' : 'bg-gray-300 text-gray-600'}
+        `}
+        onClick={() => handleSwitchToggle()}
+        disabled={formData.rentalOrSell === 'rental'}
+      >
+        Rent
+      </button>
+      <button
+        className={`w-16 h-16 rounded-xl transition-all duration-150 
+          ${formData.rentalOrSell === 'sell' ? 'bg-primary shadow-lg shadow-primary/80 text-white' : 'bg-gray-300 text-gray-600'}
+        `}
+        onClick={() => handleSwitchToggle()}
+        disabled={formData.rentalOrSell === 'sell'}
+      >
+        Sale
+      </button>
+    </div>
       {/* Deposit (if rental) */}
       {formData.rentalOrSell === "rental" && (
         <InputField
@@ -292,7 +292,7 @@ const PostForm = ({
           <button
             type="button"
             onClick={handleAddFacility}
-            className="border border-primary px-3 py-2 rounded-lg flex items-center space-x-2"
+            className={`border ${formData.rentalOrSell === "rental" ? "border-secondary" : "border-primary"} px-3 py-2 rounded-lg flex items-center space-x-2`}
           >
             <LuPlus /> Add Facility
           </button>
@@ -329,7 +329,7 @@ const PostForm = ({
           <button
             type="button"
             onClick={handleAddRule}
-            className="border border-primary px-3 py-2 rounded-lg flex items-center space-x-2"
+            className={`border ${formData.rentalOrSell === "rental" ? "border-secondary" : "border-primary"} px-3 py-2 rounded-lg flex items-center space-x-2`}
           >
             <LuPlus /> Add Rule
           </button>
@@ -364,8 +364,8 @@ const PostForm = ({
         type="submit"
         className={`px-8 py-4 text-lg rounded-lg font-semibold mt-16 mx-auto transition-all duration-150 ${
           isSubmitting
-            ? "opacity-50 bg-primary text-white cursor-not-allowed"
-            : "bg-primary text-white"
+            ? `opacity-50  ${formData.rentalOrSell === "rental" ? "bg-secondary" : "bg-primary"} text-white cursor-not-allowed`
+            : `${formData.rentalOrSell === "rental" ? "bg-secondary" : "bg-primary"} text-white`
         }`}
         disabled={isSubmitting}
       >

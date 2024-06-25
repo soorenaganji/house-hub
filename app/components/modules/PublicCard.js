@@ -7,7 +7,7 @@ const PublicCard = ({ data }) => {
       <div className=" px-2 pb-2">
         <Link
           href={`/posts/${data.userId}`}
-          className=" block py-2 px-2 mx-auto rounded-lg bg-primary text-white text-center"
+          className={`block py-2 px-2 mx-auto rounded-lg bg-primary text-white text-center `}
         >
           See Post
         </Link>
