@@ -22,14 +22,13 @@ const PostCard = ({
   facilities,
   rules,
   imageUrls,
-  isPopular,
   bedroomsCount,
   bathroomsCount,
   size,
   userId,
 }) => {
   const handleImageUrl = () => {
-    if (imageUrls && imageUrls[0] && imageUrls[0] !== "h") {
+    if (imageUrls && imageUrls[0] && imageUrls[0] !== "h" && typeof imageUrls[0] === "string") {
       return `${imageUrls[0]}`;
     } else {
       return NoImage;
