@@ -1,20 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import NoImage from "public/noPhoto.jpeg";
-import ContactModal from "../modules/ContactModal";
-
+import { LuMailPlus } from "react-icons/lu";
+import { SlCallOut } from "react-icons/sl";
 const PostView = ({ data, images }) => {
   const isSale = data.rentalOrSell === "sell";
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  const openContactModal = () => {
-    setIsContactModalOpen(true);
-  };
-  const closeContactModal = () => {
-    setIsContactModalOpen(false);
-  };
+
   // Transform images array to match react-image-gallery format
   const galleryImages = images.map((image) => ({
     original: image.url,
@@ -97,14 +90,12 @@ const PostView = ({ data, images }) => {
               <p>{data.description}</p>
               <div className="mt-12 mb-6">
                 <p className="font-semibold">Facilities:</p>
-                <div className="flex items-center justify-center gap-3 mt-6 flex-wrap">
+                <div className="flex items-center justify-start gap-3 mt-6 flex-wrap">
                   {data.facilities.length ? (
                     data.facilities.map((f, index) => (
                       <span
                         key={index}
-                        className={`p-2 rounded-lg ${
-                          isSale ? "bg-primary" : "bg-secondary"
-                        }`}
+                        className={`p-2 rounded-md bg-accent text-white`}
                       >
                         {f}
                       </span>
@@ -122,14 +113,12 @@ const PostView = ({ data, images }) => {
               </div>
               <div className="mt-12">
                 <p className="font-semibold">Rules :</p>
-                <div className="flex items-center justify-center gap-3 flex-wrap mt-6">
+                <div className="flex items-center justify-start gap-3 flex-wrap mt-6">
                   {data.rules.length ? (
                     data.rules.map((r, index) => (
                       <span
                         key={index}
-                        className={`p-2 rounded-lg ${
-                          isSale ? "bg-primary" : "bg-secondary"
-                        }`}
+                        className={`p-2 rounded-md bg-accent text-white`}
                       >
                         {r}
                       </span>
@@ -145,24 +134,22 @@ const PostView = ({ data, images }) => {
                   )}
                 </div>
               </div>
-              {isContactModalOpen ? (
-                <div className="w-full flex items-center justify-center" >
-                <ContactModal
-                  closeContactModal={closeContactModal}
-                  email={data.email}
-                  phoneNumber={data.phoneNumber}
-                  className={isContactModalOpen ? "" : "translate-x-24"}
-                /></div>
-              ) : (
-                <button
-                  onClick={openContactModal}
-                  className={`w-full text-lg mt-16 text-white rounded-lg py-3 ${
-                    isSale ? "bg-primary" : "bg-secondary"
-                  }`}
+
+              <div className="w-full  flex items-center justify-center gap-2">
+                <a
+                  href={`tel:${data.phoneNumber}`}
+                  className={`px-8 flex transition-all duration-150 items-center gap-2 text-lg mt-16 text-slate-200 hover:text-white rounded-lg py-3 hover:shadow-lg hover:shadow-green-300 bg-green-500 `}
                 >
-                  Contact
-                </button>
-              )}
+                  <SlCallOut className="text-xl" /> Call
+                </a>
+                <a
+                  href={`mailto:${data.email}`}
+                  target="blank"
+                  className={`px-8 flex transition-all duration-150 items-center gap-2 text-lg mt-16 text-slate-200 hover:text-white rounded-lg py-3 hover:shadow-lg hover:shadow-blue-300 bg-blue-500 `}
+                >
+                  <LuMailPlus className="text-xl" /> Email
+                </a>
+              </div>
             </div>
           </div>
         </div>
