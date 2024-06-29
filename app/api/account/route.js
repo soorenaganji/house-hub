@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import connectDB from "@/utils/connectDB";
 import { getServerSession } from "next-auth";
 import User from "@/models/User";
-
 export async function GET(req) {
   try {
     await connectDB();
@@ -16,7 +15,20 @@ export async function GET(req) {
       );
     }
 
-    const user = await User.findOne({ email: session.user.email });
+
+    const user = await User.aggregate([
+      { $match: { email: session.user.email } },
+      {
+        $lookup: {
+          from: "profiles",
+          foreignField: "userId",
+          localField: "_id",
+          as: "posts",
+        },
+      },
+    ]);
+    console.log(user)
+
     if (!user) {
       return NextResponse.json(
         {
@@ -28,9 +40,10 @@ export async function GET(req) {
     return NextResponse.json(
       {
         message: "User Found Successfully",
-        name: user.name,
-        email: user.email,
-        lastName: user.lastName,
+        name: user[0].name,
+        email: user[0].email,
+        lastName: user[0].lastName,
+        posts : user[0].posts
       },
       { status: 200 }
     );
