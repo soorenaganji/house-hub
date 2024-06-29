@@ -14,6 +14,7 @@ const PostForm = ({
   setImages,
   isSubmitting,
   handleSubmit,
+  onDrop
 }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -75,27 +76,7 @@ const PostForm = ({
     }));
   };
 
-  const onDrop = useCallback((acceptedFiles) => {
-    if(images.length){
-          setImages((prevImages) => [
-      ...prevImages,
-      ...acceptedFiles.map((file) =>
-        Object.assign(file, {
-          preview: URL.createObjectURL(file),
-        })
-      ),
-    ]);
-    }else{
-      setImages((prevImages) => [
-        ...acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        ),
-      ]);
-    }
 
-  }, []);
 
   const handleDeleteImage = (index) => {
     setImages((prevImages) => prevImages.filter((_, i) => i !== index));
@@ -147,7 +128,7 @@ const PostForm = ({
               <button
                 type="button"
                 onClick={() => handleDeleteImage(index)}
-                className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full"
+                className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-lg"
               >
                 <IoTrashSharp />
               </button>
