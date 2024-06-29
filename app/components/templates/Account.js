@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getUser, editUser } from "@/app/apiCalls/user";
 import InputField from "@/app/components/elements/InputField";
 import Image from "next/image";
@@ -9,15 +9,19 @@ import loadingGif from "@/public/loading.gif";
 import handWaving from "@/public/emoji.png";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import DashboardCard from "@/app/components/modules/DashboardCard";
 
 const Account = () => {
   const router = useRouter();
-  const [user, setUser] = useState({ name: "", lastName: "", email: "" });
+  const [user, setUser] = useState({
+    name: "",
+    lastName: "",
+    posts: [],
+  });
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     lastName: "",
-    email: "",
   });
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -26,8 +30,14 @@ const Account = () => {
     const fetchUser = async () => {
       try {
         const userData = await getUser();
+        console.log(userData);
         setUser(userData);
-        setFormData(userData);
+        setFormData({
+          name: userData.name,
+          lastName: userData.lastName,
+          email: userData.email,
+          posts: userData.posts,
+        });
       } catch (error) {
         toast.error("Failed to fetch user data");
       } finally {
@@ -42,10 +52,11 @@ const Account = () => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
-  const handleSubmit = async () => {
-    const { name, lastName, email } = formData;
 
-    if (!name || !lastName || !email) {
+  const handleSubmit = async () => {
+    const { name, lastName } = formData;
+
+    if (!name || !lastName) {
       toast.error("All fields are required");
       return;
     }
@@ -55,7 +66,11 @@ const Account = () => {
       console.log("Submitting form data:", formData);
       const updatedUser = await editUser(formData);
       console.log("Updated user data:", updatedUser);
-      setUser(updatedUser);
+      setUser( {
+        ...user ,
+        name : updatedUser.name ,
+        lastName : updatedUser.lastName
+      });
       toast.success("User data updated successfully");
       setIsEditing(false);
     } catch (error) {
@@ -67,7 +82,11 @@ const Account = () => {
   };
 
   const handleCancel = () => {
-    setFormData(user);
+    setFormData({
+      name: user.name,
+      lastName: user.lastName,
+      email: user.email,
+    });
     setIsEditing(false);
   };
 
@@ -117,14 +136,14 @@ const Account = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-start mt-8 w-screen h-screen">
-        <Image src={loadingGif} alt="Loading" width={300} height={300} />
+        <Image src={loadingGif} alt="Loading" width={100} height={100} className="w-72 h-72 " />
       </div>
     );
   }
 
   return (
-    <div className=" max-w-sm mx-auto  mt-24">
-      <div className="flex items-end justify-around mb-12 ">
+    <div className="max-w-sm mx-auto mt-24">
+      <div className="flex items-end justify-around mb-12">
         <Image
           src={handWaving}
           alt="Hand Waving"
@@ -150,14 +169,15 @@ const Account = () => {
             value={formData.lastName}
             onChange={handleChange}
           />
-          <>
-            <p className="">
-              <span className="">Email</span>
-              <span className="w-full border p-2 block rounded focus:border-primary mb-4 focus:shadow-md focus:outline-none transition-all duration-150" onClick={() => toast.error("Not Editable")} >
-                {user.email}
-              </span>
-            </p>
-          </>
+          <p className="">
+            <span className="">Email</span>
+            <span
+              className="w-full border p-2 block rounded focus:border-primary mb-4 focus:shadow-md focus:outline-none transition-all duration-150"
+              onClick={() => toast.error("Not Editable")}
+            >
+              {user.email}
+            </span>
+          </p>
           <div className="flex space-x-2 mt-4">
             <button
               className="flex-1 bg-secondary/10 border border-secondary text-secondary rounded-lg py-2"
@@ -189,6 +209,18 @@ const Account = () => {
               <span className="font-semibold">Email:</span> {user.email}
             </p>
           </div>
+          <div className="mt-8 mb-12  ">
+            <h3 className="text-xl font-bold mb-4">Your Posts</h3>
+            <div className="flex flex-row overflow-x-scroll space-x-12 snap-x snap-mandatory py-6 hide-scroll-bar px-8">
+              {user?.posts?.map((post) => (
+                <DashboardCard
+                  key={post.id}
+                  data={post}
+                  isOnAccountPage={true}
+                />
+              ))}
+            </div>
+          </div>
           <div className="flex items-center justify-between gap-3 flex-row-reverse">
             <button
               className="w-full bg-primary text-white rounded-lg py-2"
@@ -197,7 +229,7 @@ const Account = () => {
               Edit Profile
             </button>
             <button
-              className="w-full bg-secondary/10 border border-secondary text-secondary   rounded-lg py-2"
+              className="w-full bg-secondary/10 border border-secondary text-secondary rounded-lg py-2"
               onClick={handleLogout}
             >
               Log Out

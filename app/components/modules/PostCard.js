@@ -26,6 +26,7 @@ const PostCard = ({
   bathroomsCount,
   size,
   userId,
+  isOnAccountPage
 }) => {
   const handleImageUrl = () => {
     if (imageUrls && imageUrls[0] && imageUrls[0] !== "h" && typeof imageUrls[0] === "string") {
@@ -37,7 +38,7 @@ const PostCard = ({
   return (
     <>
       <div className="">
-        <div className="relative w-24  top-8 -mt-2">
+        <div className={` ${isOnAccountPage ? "hidden" : ""}  relative w-24  top-8 -mt-2`}>
           <div
             className={`bg-white/80 backdrop-blur-lg ${
               price ? "text-primary" : "text-secondary"
@@ -47,10 +48,11 @@ const PostCard = ({
             {price ? "For Sale" : "For Rent"}
           </div>
         </div>
+       
         <Image
           src={handleImageUrl()}
           alt={title}
-          className="w-[400px] h-48 object-cover rounded-t-lg mb-1"
+          className={`w-[400px] h-48 object-cover rounded-t-lg mb-1 ${isOnAccountPage ? "hidden" : ""} `}
           width={400}
           height={300}
         />
@@ -74,7 +76,7 @@ const PostCard = ({
         </div>
         <div className="font-bold text-xl my-2">{title}</div>
         <div className="text-gray-500 mb-3">{city}</div>
-        <div className="flex items-center text-gray-700 text-sm pb-2 border-b">
+        <div className={`flex items-center text-gray-700 text-sm pb-2 border-b ${isOnAccountPage ? "hidden" : ""} `}>
           <LiaBedSolid
             className={`mr-2 ${price ? "text-primary" : "text-secondary"}`}
           />{" "}

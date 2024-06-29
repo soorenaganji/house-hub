@@ -3,7 +3,7 @@ import Link from "next/link";
 import PostCard from "./PostCard";
 import toast from "react-hot-toast";
 import { deletePost } from "@/app/apiCalls/post";
-const DashboardCard = ({ data }) => {
+const DashboardCard = ({ data, isOnAccountPage }) => {
   const handlePostDelete = async () => {
     let isUserSure = false;
     const handleUserConfirmation = async (t, confirmation) => {
@@ -50,8 +50,8 @@ const DashboardCard = ({ data }) => {
   };
   const postCardData = JSON.parse(JSON.stringify(data));
   return (
-    <div className="max-w-[250px] rounded-lg shadow-lg bg-white">
-      <PostCard {...postCardData} />
+    <div className="max-w-[250px] rounded-lg shadow-lg bg-white snap-center">
+      <PostCard {...postCardData} isOnAccountPage={isOnAccountPage} />
       <div className="flex items-center justify-center px-4 pb-2">
         <Link
           href={`/dashboard/my-posts/edit/${data._id}`}
