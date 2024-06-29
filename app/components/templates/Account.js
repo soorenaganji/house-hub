@@ -5,8 +5,8 @@ import { getUser, editUser } from "@/app/apiCalls/user";
 import InputField from "@/app/components/elements/InputField";
 import Image from "next/image";
 import toast from "react-hot-toast";
-import loadingGif from "public/loading.gif";
-import handWaving from "public/handwaving.png";
+import loadingGif from "@/public/loading.gif";
+import handWaving from "@/public/handwaving.png";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
