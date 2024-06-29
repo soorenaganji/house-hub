@@ -1,9 +1,11 @@
-const page = () => {
+import Account from "@/app/components/templates/Account";
+
+const AccountPage = () => {
     return (
-        <div>
-            Enter
-        </div>
+        <>
+            <Account />
+        </>
     );
 }
 
-export default page;
+export default AccountPage;
