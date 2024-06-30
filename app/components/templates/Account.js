@@ -5,11 +5,11 @@ import { getUser, editUser } from "@/app/apiCalls/user";
 import InputField from "@/app/components/elements/InputField";
 import Image from "next/image";
 import toast from "react-hot-toast";
-import loadingGif from "@/public/loading.gif";
-import handWaving from "@/public/emoji.png";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import DashboardCard from "@/app/components/modules/DashboardCard";
+import { FiEdit3 } from "react-icons/fi";
+import { MdOutlineLogout } from "react-icons/md";
 
 const Account = () => {
   const router = useRouter();
@@ -30,7 +30,6 @@ const Account = () => {
     const fetchUser = async () => {
       try {
         const userData = await getUser();
-        console.log(userData);
         setUser(userData);
         setFormData({
           name: userData.name,
@@ -48,6 +47,14 @@ const Account = () => {
     fetchUser();
   }, []);
 
+  function getEmailPrefix(email) {
+    const atIndex = email.indexOf("@");
+    if (atIndex === -1) {
+      return "";
+    }
+    return email.substring(0, atIndex);
+  }
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -63,18 +70,15 @@ const Account = () => {
 
     setSubmitting(true);
     try {
-      console.log("Submitting form data:", formData);
       const updatedUser = await editUser(formData);
-      console.log("Updated user data:", updatedUser);
-      setUser( {
-        ...user ,
-        name : updatedUser.name ,
-        lastName : updatedUser.lastName
+      setUser({
+        ...user,
+        name: updatedUser.name,
+        lastName: updatedUser.lastName,
       });
       toast.success("User data updated successfully");
       setIsEditing(false);
     } catch (error) {
-      console.error("Failed to update user data:", error);
       toast.error("Failed to update user data");
     } finally {
       setSubmitting(false);
@@ -135,24 +139,26 @@ const Account = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-start mt-8 w-screen h-screen">
-        <Image src={loadingGif} alt="Loading" width={100} height={100} className="w-72 h-72 " />
+      <div className="flex flex-col space-y-4 p-4 w-full h-screen mt-8 ">
+        <div className="w-full h-24 rounded-lg bg-gray-300 shimmer"></div>
+        <div className="flex space-x-4">
+          <div className="w-16 h-16 rounded-full bg-gray-300 shimmer"></div>
+          <div className="flex-1 space-y-4">
+            <div className="h-4 w-3/4 bg-gray-300 shimmer rounded"></div>
+            <div className="h-4 w-1/2 bg-gray-300 shimmer rounded"></div>
+          </div>
+        </div>
+        <div className="space-y-4">
+          <div className="h-4 w-full bg-gray-300 shimmer rounded"></div>
+          <div className="h-4 w-full bg-gray-300 shimmer rounded"></div>
+          <div className="h-4 w-full bg-gray-300 shimmer rounded"></div>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="max-w-sm mx-auto mt-24">
-      <div className="flex items-end justify-around mb-12">
-        <Image
-          src={handWaving}
-          alt="Hand Waving"
-          width={96}
-          height={96}
-          className="ml-2"
-        />
-        <h2 className="text-2xl font-bold mb-4">Hello, {user.name}</h2>
-      </div>
       {isEditing ? (
         <div className="">
           <InputField
@@ -198,41 +204,47 @@ const Account = () => {
         </div>
       ) : (
         <div>
-          <div className="mb-12 mt-4">
-            <p className="mb-8 text-lg">
-              <span className="font-semibold">Name:</span> {user.name}
-            </p>
-            <p className="mb-8 text-lg">
-              <span className="font-semibold">Last Name:</span> {user.lastName}
-            </p>
-            <p className="mb-8 text-lg">
-              <span className="font-semibold">Email:</span> {user.email}
-            </p>
+          <div className="w-full py-4 rounded-lg bg-primary flex items-center justify-between px-3">
+            <div className="text-white flex items-center justify-start gap-4 ">
+              <Image
+                src={`https://avatar.iran.liara.run/username?username=${user.name}+${user.lastName}`}
+                width={48}
+                height={48}
+              />
+              <div>
+                <h3 className=" text-lg first-letter:capitalize ">
+                  {user.name}
+                </h3>
+                <p className="text-xs text-slate-200 mt-1">
+                  @{getEmailPrefix(user.email)}
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => setIsEditing(true)}
+              className="h-full px-3 text-xl text-white"
+            >
+              <FiEdit3 />
+            </button>
           </div>
-          <div className="mt-8 mb-12  ">
+          <div className="mt-16 mb-12">
             <h3 className="text-xl font-bold mb-4">Your Posts</h3>
             <div className="flex flex-row overflow-x-scroll space-x-12 snap-x snap-mandatory py-6 hide-scroll-bar px-8">
               {user?.posts?.map((post) => (
                 <DashboardCard
                   key={post.id}
                   data={post}
-                  isOnAccountPage={true}
+                  isOnAccountPage={false}
                 />
               ))}
             </div>
           </div>
-          <div className="flex items-center justify-between gap-3 flex-row-reverse">
+          <div className="flex items-center mb-6 justify-between gap-3 flex-row-reverse">
             <button
-              className="w-full bg-primary text-white rounded-lg py-2"
-              onClick={() => setIsEditing(true)}
-            >
-              Edit Profile
-            </button>
-            <button
-              className="w-full bg-secondary/10 border border-secondary text-secondary rounded-lg py-2"
+              className="w-full text-lg  bg-secondary/10 border flex items-center justify-center gap-3 border-secondary text-secondary rounded-lg py-3"
               onClick={handleLogout}
             >
-              Log Out
+              <MdOutlineLogout /> Log out
             </button>
           </div>
         </div>

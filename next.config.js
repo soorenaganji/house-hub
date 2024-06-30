@@ -9,6 +9,11 @@ module.exports = {
         hostname: "buasqibyaroyxebuqtsw.supabase.co",
         pathname: "/storage/v1/object/public/HouseHub/Posts/**",
       },
+      {
+        protocol: "https",
+        hostname: "avatar.iran.liara.run",
+        pathname: "/**",
+      },
     ],
   },
 };
