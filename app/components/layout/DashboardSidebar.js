@@ -25,7 +25,7 @@ const DashBoardSidebar = ({ children }) => {
     toast.custom((t) => (
       <div
         className={`${
-          t.visible ? "animate-enter" : "animate-leave"
+          t.visible ? " animate-enter " : " animate-leave "
         } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
       >
         <div className="flex-1 w-0 p-4">
