@@ -1,12 +1,12 @@
 "use client";
 import { BiBath } from "react-icons/bi";
 import { TbSquareRotated } from "react-icons/tb";
-import { GoStarFill } from "react-icons/go";
+
 import { LiaBedSolid } from "react-icons/lia";
 import Image from "next/image";
 import NoImage from "public/noPhoto.jpeg";
 import { formatNumber } from "@/app/helper/functions";
-
+import { FaTags , FaKey } from "react-icons/fa";
 const PostCard = ({
   title,
   description,
@@ -26,10 +26,15 @@ const PostCard = ({
   bathroomsCount,
   size,
   userId,
-  isOnAccountPage
+  isOnAccountPage,
 }) => {
   const handleImageUrl = () => {
-    if (imageUrls && imageUrls[0] && imageUrls[0] !== "h" && typeof imageUrls[0] === "string") {
+    if (
+      imageUrls &&
+      imageUrls[0] &&
+      imageUrls[0] !== "h" &&
+      typeof imageUrls[0] === "string"
+    ) {
       return `${imageUrls[0]}`;
     } else {
       return NoImage;
@@ -38,21 +43,27 @@ const PostCard = ({
   return (
     <>
       <div className="">
-        <div className={` ${isOnAccountPage ? "hidden" : ""}  relative w-24  top-8 -mt-2`}>
+        <div
+          className={` ${
+            isOnAccountPage ? "hidden" : ""
+          }  relative w-24  top-8 -mt-2`}
+        >
           <div
             className={`bg-white/80 backdrop-blur-lg ${
               price ? "text-primary" : "text-secondary"
             }  px-3 py-1 text-xs rounded-r-lg flex items-center justify-center gap-2`}
           >
-            <GoStarFill />
+            {price ? <FaKey /> : <FaTags />}
             {price ? "For Sale" : "For Rent"}
           </div>
         </div>
-       
+
         <Image
           src={handleImageUrl()}
           alt={title}
-          className={`w-[400px] h-48 object-cover rounded-t-lg mb-1 ${isOnAccountPage ? "hidden" : ""} `}
+          className={`w-[400px] h-48 object-cover rounded-t-lg mb-1 ${
+            isOnAccountPage ? "hidden" : ""
+          } `}
           width={400}
           height={300}
         />
@@ -76,7 +87,11 @@ const PostCard = ({
         </div>
         <div className="font-bold text-xl my-2">{title}</div>
         <div className="text-gray-500 mb-3">{city}</div>
-        <div className={`flex items-center text-gray-700 text-sm pb-2 border-b ${isOnAccountPage ? "hidden" : ""} `}>
+        <div
+          className={`flex items-center text-gray-700 text-sm pb-2 border-b ${
+            isOnAccountPage ? "hidden" : ""
+          } `}
+        >
           <LiaBedSolid
             className={`mr-2 ${price ? "text-primary" : "text-secondary"}`}
           />{" "}
