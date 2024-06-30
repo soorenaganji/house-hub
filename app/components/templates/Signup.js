@@ -106,7 +106,7 @@ const Signup = () => {
               onFocus={touchHandler}
               name="name"
               type="text"
-              placeholder="Name"
+              placeholder="Sourena"
               className={`w-full h-12 lg:h-14 lg:text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-2 rounded-md border outline-none ${
                 errors.name && touched.name
                   ? "border-red-400"
@@ -118,7 +118,7 @@ const Signup = () => {
               onFocus={touchHandler}
               name="lastName"
               type="text"
-              placeholder="Last Name"
+              placeholder="Ganji"
               className={`w-full h-12 lg:h-14 lg:text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-2 rounded-md border outline-none ${
                 errors.lastName && touched.lastName
                   ? "border-red-400"
@@ -135,7 +135,7 @@ const Signup = () => {
             onFocus={touchHandler}
             name="Email"
             type="email"
-            placeholder="Email"
+            placeholder="youremail@example.com"
             className={`w-full h-12 lg:h-14 lg:text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-4 rounded-md border outline-none ${
               errors.Email && touched.Email
                 ? "border-red-400"
@@ -150,7 +150,7 @@ const Signup = () => {
             onFocus={touchHandler}
             name="Password"
             type="password"
-            placeholder="Password"
+            placeholder="******"
             className={`w-full h-12 lg:h-14 lg:text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-4 rounded-md border outline-none ${
               errors.Password && touched.Password
                 ? "border-red-400"
@@ -165,7 +165,7 @@ const Signup = () => {
             onFocus={touchHandler}
             name="Password2"
             type="password"
-            placeholder="Confirm Password"
+            placeholder="******"
             className={`w-full h-12 lg:h-14 lg:text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-4 rounded-md border outline-none ${
               errors.Password2 && touched.Password2
                 ? "border-red-400"
