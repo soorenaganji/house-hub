@@ -1,12 +1,15 @@
+"use client"
 import { useDropzone } from "react-dropzone";
 import { IoTrashSharp } from "react-icons/io5";
 import { CiImageOn } from "react-icons/ci";
 import { LuPlus } from "react-icons/lu";
 import InputField from "app/components/elements/InputField";
 import TextareaField from "app/components/elements/TextAreaField";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import toast from "react-hot-toast";
 import { deleteImageFromSupabase } from "@/app/helper/functions";
+import { useSession } from "next-auth/react";
+
 const PostForm = ({
   formData,
   setFormData,
@@ -16,6 +19,8 @@ const PostForm = ({
   handleSubmit,
   onDrop
 }) => {
+  const { data: session } = useSession();
+console.log(session)
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -23,6 +28,15 @@ const PostForm = ({
       [name]: value,
     }));
   };
+
+  useEffect(() => {
+    if (session?.user?.email) {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        email: session.user.email,
+      }));
+    }
+  }, [session, setFormData]);
 
   const handleSwitchToggle = () => {
     setFormData((prevFormData) => ({
@@ -76,15 +90,15 @@ const PostForm = ({
     }));
   };
 
-
-
   const handleDeleteImage = (index) => {
     setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
+  
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: "image/*",
   });
+
   function handleImageSrc(image) {
     return typeof image.url === "string"
       ? image.url
@@ -213,29 +227,29 @@ const PostForm = ({
         name="email"
         type="email"
         value={formData.email}
-        onChange={handleChange}
+        readOnly={true}
       />
       {/* Rental or Sell */}
       <div className="flex items-center space-x-4">
-      <button
-        className={`w-16 h-16 rounded-xl transition-all duration-150 
-          ${formData.rentalOrSell === 'rental' ? 'bg-secondary shadow-lg shadow-secondary/80 text-white' : 'bg-gray-300 text-gray-600'}
-        `}
-        onClick={() => handleSwitchToggle()}
-        disabled={formData.rentalOrSell === 'rental'}
-      >
-        Rent
-      </button>
-      <button
-        className={`w-16 h-16 rounded-xl transition-all duration-150 
-          ${formData.rentalOrSell === 'sell' ? 'bg-primary shadow-lg shadow-primary/80 text-white' : 'bg-gray-300 text-gray-600'}
-        `}
-        onClick={() => handleSwitchToggle()}
-        disabled={formData.rentalOrSell === 'sell'}
-      >
-        Sale
-      </button>
-    </div>
+        <button
+          className={`w-16 h-16 rounded-xl transition-all duration-150 
+            ${formData.rentalOrSell === 'rental' ? 'bg-secondary shadow-lg shadow-secondary/80 text-white' : 'bg-gray-300 text-gray-600'}
+          `}
+          onClick={() => handleSwitchToggle()}
+          disabled={formData.rentalOrSell === 'rental'}
+        >
+          Rent
+        </button>
+        <button
+          className={`w-16 h-16 rounded-xl transition-all duration-150 
+            ${formData.rentalOrSell === 'sell' ? 'bg-primary shadow-lg shadow-primary/80 text-white' : 'bg-gray-300 text-gray-600'}
+          `}
+          onClick={() => handleSwitchToggle()}
+          disabled={formData.rentalOrSell === 'sell'}
+        >
+          Sale
+        </button>
+      </div>
       {/* Deposit (if rental) */}
       {formData.rentalOrSell === "rental" && (
         <InputField
