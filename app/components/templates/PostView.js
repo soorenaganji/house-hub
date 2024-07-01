@@ -9,7 +9,7 @@ const PostView = ({ data }) => {
   const images = data.imageUrls;
   const isSale = data.rentalOrSell === "sell";
   // Transform images array to match react-image-gallery format
-  const galleryImages = images.map((image) => ({
+  const galleryImages = images?.map((image) => ({
     original: image.url ? image.url : image,
   }));
   // Custom renderItem function to handle image errors and set static dimensions
