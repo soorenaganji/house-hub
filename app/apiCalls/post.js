@@ -19,3 +19,12 @@ export async function PublishPost(id) {
   const res = await fetch(`/api/profile/publish/${id}`, { method: "PATCH" });
   return res;
 }
+
+export async function getPost() {
+  const response = await axios.get("/api/profile");
+  console.log(response)
+  if(response.data){
+       return response.data.data;
+  }
+return
+}

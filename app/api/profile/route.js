@@ -8,7 +8,7 @@ export async function GET() {
   try {
     await connectDB();
 
-    const posts = await Profile.find({ published: true }).select("_userId");
+    const posts = await Profile.find({ published: true })
 
     return NextResponse.json(
       {
