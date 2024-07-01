@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import DashboardCard from "@/app/components/modules/DashboardCard";
 import { FiEdit3 } from "react-icons/fi";
 import { MdOutlineLogout } from "react-icons/md";
+import Link from "next/link";
 
 const Account = () => {
   const router = useRouter();
@@ -230,13 +231,13 @@ const Account = () => {
           <div className="mt-16 mb-12">
             <h3 className="text-xl font-bold mb-4">Your Posts</h3>
             <div className="flex flex-row overflow-x-scroll space-x-12 snap-x snap-mandatory py-6 hide-scroll-bar px-8">
-              {user?.posts?.map((post) => (
+              {user.posts.length ? user?.posts?.map((post) => (
                 <DashboardCard
                   key={post.id}
                   data={post}
                   isOnAccountPage={false}
                 />
-              ))}
+              )) : <h3 className="text-2xl font-semibold " > No Post Yet :( <span className="block text-sm  font-light mt-6 " >You can Add your first post <Link href={"/dashboard/add-post"} className="text-primary underline" >HERE</Link></span> </h3>}
             </div>
           </div>
           <div className="flex items-center mb-6 justify-between gap-3 flex-row-reverse">
