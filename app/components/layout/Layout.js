@@ -10,7 +10,8 @@ const Layout = ({ children }) => {
   const [isNavBarOpen, setIsNavbarOpen] = useState(false);
   const pathname = usePathname();
   const isAuthPage = pathname === "/signup" || pathname === "/login";
-  const isDashboard = pathname.includes("/dashboard");
+  const isDashboard =
+    pathname.includes("/dashboard") || pathname.includes("/Admin");
 
   return (
     <>

@@ -5,14 +5,13 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import NoImage from "public/noPhoto.jpeg";
 import { LuMailPlus } from "react-icons/lu";
 import { SlCallOut } from "react-icons/sl";
-const PostView = ({ data, images }) => {
+const PostView = ({ data }) => {
+  const images = data.imageUrls;
   const isSale = data.rentalOrSell === "sell";
-
   // Transform images array to match react-image-gallery format
   const galleryImages = images.map((image) => ({
-    original: image.url,
+    original: image.url ? image.url : image,
   }));
-
   // Custom renderItem function to handle image errors and set static dimensions
   const renderItem = (item) => (
     <img

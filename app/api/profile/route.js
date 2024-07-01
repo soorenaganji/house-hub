@@ -4,6 +4,26 @@ import { getServerSession } from "next-auth";
 import User from "@/app/models/User";
 import Profile from "@/app/models/Profile";
 import { Types } from "mongoose";
+export async function GET() {
+  try {
+    await connectDB();
+
+    const posts = await Profile.find({ published: true }).select("_userId");
+
+    return NextResponse.json(
+      {
+        data: posts,
+      },
+      { status: 200 }
+    );
+  } catch (err) {
+    console.log(err);
+    return NextResponse.json(
+      { error: "There is a problem with the server" },
+      { status: 500 }
+    );
+  }
+}
 export async function POST(req) {
   try {
     await connectDB();

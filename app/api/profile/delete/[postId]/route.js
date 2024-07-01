@@ -31,6 +31,18 @@ export async function DELETE(req, context) {
     }
 
     const profile = await Profile.findOne({ _id: id });
+    if (!user._id.equals(profile.userId) && user.role === "ADMIN") {
+      const postImageUrls = await profile.ImageUrls;
+      if (postImageUrls) {
+        await postImageUrls?.map((url) => deleteImageFromSupabase(url));
+      }
+      await Profile.deleteOne({ _id: id });
+
+      return NextResponse.json(
+        { message: "Post Deleted Successfully" },
+        { status: 200 }
+      );
+    }
     if (!user._id.equals(profile.userId)) {
       return NextResponse.json(
         {
@@ -39,13 +51,12 @@ export async function DELETE(req, context) {
         { status: 403 }
       );
     }
-const postImageUrls = await profile.ImageUrls
-if(postImageUrls){
-   await postImageUrls?.map(url =>    deleteImageFromSupabase(url))
-
-}
+    const postImageUrls = await profile.ImageUrls;
+    if (postImageUrls) {
+      await postImageUrls?.map((url) => deleteImageFromSupabase(url));
+    }
     await Profile.deleteOne({ _id: id });
- 
+
     return NextResponse.json(
       { message: "Post Deleted Successfully" },
       { status: 200 }

@@ -3,7 +3,7 @@ import Link from "next/link";
 const PublicCard = ({ data }) => {
   return (
     <div className="max-w-[250px] rounded-lg shadow-lg bg-white">
-      <PostCard {...data} isOnAccountPage={false} />
+      <PostCard {...data}  />
       <div className=" px-2 pb-2">
         <Link
           href={`/posts/${data.userId}`}

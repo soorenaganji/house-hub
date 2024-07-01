@@ -12,27 +12,18 @@ import "react-image-gallery/styles/css/image-gallery.css";
 
 const PostCard = ({
   title,
-  description,
   city,
-  street,
-  zipcode,
-  phoneNumber,
-  email,
   rentalOrSell,
   deposit,
   mortgage,
   price,
-  facilities,
-  rules,
   imageUrls,
   bedroomsCount,
   bathroomsCount,
   size,
-  userId,
-  isOnAccountPage,
 }) => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
-
+console.log(size)
   const handleImageUrl = () => {
     if (
       imageUrls &&

@@ -235,7 +235,7 @@ const Account = () => {
                 <DashboardCard
                   key={post.id}
                   data={post}
-                  isOnAccountPage={false}
+                  
                 />
               )) : <h3 className="text-2xl font-semibold " > No Post Yet :( <span className="block text-sm  font-light mt-6 " >You can Add your first post <Link href={"/dashboard/add-post"} className="text-primary underline" >HERE</Link></span> </h3>}
             </div>

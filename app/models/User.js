@@ -4,6 +4,7 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
+    unique: true, // It's a good practice to ensure emails are unique
   },
   password: {
     type: String,
@@ -17,6 +18,15 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  role: {
+    type: String,
+    default: ["USER" , "ADMIN"],
+  },
+  userType: {
+    type: String,
+    enum: ["REALTOR", "HOME_SEEKER", "ADMIN"],
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -24,6 +34,6 @@ const userSchema = new Schema({
   },
 });
 
-const User = await models.User || model("User", userSchema);
+const User = models.User || model("User", userSchema);
 
 export default User;

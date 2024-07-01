@@ -53,7 +53,7 @@ const page = async ({ params }) => {
   const { postsData, images } = await fetchData(id);
   return (
     <div>
-      <PostView data={postsData} images={images} />
+      <PostView data={postsData}  />
     </div>
   );
 };

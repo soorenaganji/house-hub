@@ -7,7 +7,7 @@ const Posts = async ({ posts }) => {
       {(await posts?.length) ? (
         posts.map((post) => (
           <>
-            <DashboardCard data={post} isOnAccountPage={false} />
+            <DashboardCard data={post}  />
           </>
         ))
       ) : (
