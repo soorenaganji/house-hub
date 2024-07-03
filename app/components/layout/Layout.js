@@ -68,7 +68,7 @@ const Layout = ({ children }) => {
                       </Link>{" "}
                     </>
                   )}
-                  <Link onClick={() => setIsNavbarOpen(false)} href={"/feed?sort=date&filter=sell"}>
+                  <Link onClick={() => setIsNavbarOpen(false)} href={"/feed?sort=date&filter=rent"}>
                     Rent
                   </Link>
                   <Link onClick={() => setIsNavbarOpen(false)} href={"/feed?sort=date&filter=sell"}>
