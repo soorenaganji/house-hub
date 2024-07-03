@@ -6,6 +6,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import toast from "react-hot-toast";
 import { useSearchParams, useRouter } from "next/navigation";
+import { LuSearch } from "react-icons/lu";
 
 const Feed = () => {
   const searchParams = useSearchParams();
@@ -15,6 +16,7 @@ const Feed = () => {
   const [loading, setLoading] = useState(true);
   const [sort, setSort] = useState(searchParams.get("sort") || "date");
   const [filter, setFilter] = useState(searchParams.get("filter") || "");
+  const [searchTerm, setSearchTerm] = useState(searchParams.get("search") || "");
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -33,6 +35,7 @@ const Feed = () => {
   useEffect(() => {
     setSort(searchParams.get("sort") || "date");
     setFilter(searchParams.get("filter") || "");
+    setSearchTerm(searchParams.get("search") || "");
   }, [searchParams]);
 
   const handleSortChange = (e) => {
@@ -47,6 +50,15 @@ const Feed = () => {
     updateQueryParams({ filter: newFilter });
   };
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    updateQueryParams({ search: searchTerm });
+  };
+
   const updateQueryParams = (params) => {
     const currentParams = new URLSearchParams(window.location.search);
     Object.keys(params).forEach((key) => {
@@ -59,8 +71,21 @@ const Feed = () => {
     router.replace(`${window.location.pathname}?${currentParams.toString()}`);
   };
 
-  const sortedFilteredPosts = posts
+  const sortedFilteredSearchedPosts = posts
     .filter((post) => (filter ? post.rentalOrSell === filter : true))
+    .filter((post) => {
+      if (!searchTerm) return true;
+      const searchRegex = new RegExp(searchTerm, "i");
+      return (
+        searchRegex.test(post.title) ||
+        searchRegex.test(post.description) ||
+        searchRegex.test(post.city) ||
+        searchRegex.test(post.street) ||
+        searchRegex.test(post.zipcode) ||
+        searchRegex.test(post.facilities.join(" ")) ||
+        searchRegex.test(post.rules.join(" "))
+      );
+    })
     .sort((a, b) => {
       if (sort === "date") {
         return new Date(b.createdAt) - new Date(a.createdAt);
@@ -73,7 +98,23 @@ const Feed = () => {
 
   return (
     <div className="w-full flex items-center justify-start flex-col gap-12 my-24 px-4">
-      <div className="w-full flex flex-row justify-between items-start mb-6">
+        <form className="flex w-full  items-center gap-1 sm:mt-0" onSubmit={handleSearchSubmit}>
+          <input
+            id="search"
+            type="text"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className="min-h-[2.75rem] placeholder:font-thin border bg-transparent w-64 outline-none px-2 border-gray-300 rounded py-2  text-sm text-primary "
+            placeholder="Search..."
+          />
+          <button
+            type="submit"
+            className="bg-primary h-12 w-12 rounded-md text-white text-2xl flex items-center justify-center"
+          >
+            <LuSearch />
+          </button>
+        </form>
+      <div className="w-full flex flex-row justify-between items-center mb-6 gap-4">
         <div className="flex items-center gap-1">
           <label htmlFor="sort" className="text-sm font-medium">
             Sort:
@@ -125,7 +166,7 @@ const Feed = () => {
           <Skeleton count={5} />
         </div>
       ) : (
-        sortedFilteredPosts.map((post, index) => (
+        sortedFilteredSearchedPosts.map((post, index) => (
           <PublicCard data={post} key={index} />
         ))
       )}
