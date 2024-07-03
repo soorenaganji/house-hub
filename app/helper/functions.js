@@ -8,6 +8,15 @@ function formatNumber(num) {
   }
   return num;
 }
+function formatNumberWithCommas(number) {
+  // Convert the number to a string
+  let numberStr = number.toString();
+
+  // Use a regular expression to add commas
+  numberStr = numberStr.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  return numberStr;
+}
 const uploadImageToSupabase = async (file) => {
     const fileExt = file.name.split(".").pop();
     const fileName = `${Math.random()}.${fileExt}`;
@@ -54,4 +63,4 @@ const uploadImageToSupabase = async (file) => {
   
 
 
-export {formatNumber , uploadImageToSupabase , deleteImageFromSupabase}
+export {formatNumber , uploadImageToSupabase , deleteImageFromSupabase , formatNumberWithCommas}

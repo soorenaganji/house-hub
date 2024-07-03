@@ -5,6 +5,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import NoImage from "public/noPhoto.jpeg";
 import { LuMailPlus } from "react-icons/lu";
 import { SlCallOut } from "react-icons/sl";
+import { formatNumber, formatNumberWithCommas } from "@/app/helper/functions";
 const PostView = ({ data }) => {
   const images = data.imageUrls;
   const isSale = data.rentalOrSell === "sell";
@@ -69,17 +70,17 @@ const PostView = ({ data }) => {
               </p>
               {data?.rentalOrSell === "sell" ? (
                 <p>
-                  <span className="font-semibold">Price:</span> {data?.price} $
+                  <span className="font-semibold">Price:</span> {formatNumberWithCommas(data?.price)} $
                 </p>
               ) : (
                 <>
                   <p>
                     <span className="font-semibold">Deposit:</span>{" "}
-                    {data?.deposit} $
+                    {formatNumberWithCommas(data?.deposit)} $
                   </p>
                   <p>
                     <span className="font-semibold">Mortgage:</span>
-                    {data?.mortgage} $
+                    {formatNumberWithCommas(data?.mortgage)} $
                   </p>{" "}
                 </>
               )}
