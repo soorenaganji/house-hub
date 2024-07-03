@@ -13,7 +13,7 @@ const PropertyListingSection =  () => {
         <PublishedPostsList />
       </div>
       <Link
-        href={"/"}
+        href={"/feed"}
         className="font-semibold px-8 py-4 text-white mx-auto rounded-lg bg-primary"
       >
         Browse more properties

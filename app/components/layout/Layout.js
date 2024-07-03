@@ -68,13 +68,13 @@ const Layout = ({ children }) => {
                       </Link>{" "}
                     </>
                   )}
-                  <Link onClick={() => setIsNavbarOpen(false)} href={"/rent"}>
+                  <Link onClick={() => setIsNavbarOpen(false)} href={"/feed?sort=date&filter=sell"}>
                     Rent
                   </Link>
-                  <Link onClick={() => setIsNavbarOpen(false)} href={"/buy"}>
+                  <Link onClick={() => setIsNavbarOpen(false)} href={"/feed?sort=date&filter=sell"}>
                     Buy
                   </Link>
-                  <Link onClick={() => setIsNavbarOpen(false)} href={"/sell"}>
+                  <Link onClick={() => setIsNavbarOpen(false)} href={"/feed?sort=date&filter=sell"}>
                     Sell
                   </Link>
                 </div>
