@@ -15,7 +15,7 @@ const PostView = ({ data }) => {
   // Custom renderItem function to handle image errors and set static dimensions
   const renderItem = (item) => (
     <img
-      src={item.original}
+      src={item?.original}
       alt="Gallery image"
       onError={(e) => {
         e.target.onerror = null; // Prevent looping
@@ -48,50 +48,50 @@ const PostView = ({ data }) => {
 
             <div className="mt-8 space-y-6">
               <p>
-                <span className="font-semibold">City:</span> {data.city}
+                <span className="font-semibold">City:</span> {data?.city}
               </p>
               <p>
-                <span className="font-semibold">Street:</span> {data.street}
+                <span className="font-semibold">Street:</span> {data?.street}
               </p>
               <p>
-                <span className="font-semibold">Zipcode:</span> {data.zipcode}
+                <span className="font-semibold">Zipcode:</span> {data?.zipcode}
               </p>
               <p>
-                <span className="font-semibold">Size:</span> {data.size} m²
+                <span className="font-semibold">Size:</span> {data?.size} m²
               </p>
               <p>
                 <span className="font-semibold">Bedrooms:</span>{" "}
-                {data.bedroomsCount}
+                {data?.bedroomsCount}
               </p>
               <p>
                 <span className="font-semibold">Bathrooms:</span>{" "}
-                {data.bathroomsCount}
+                {data?.bathroomsCount}
               </p>
-              {data.rentalOrSell === "sell" ? (
+              {data?.rentalOrSell === "sell" ? (
                 <p>
-                  <span className="font-semibold">Price:</span> {data.price} $
+                  <span className="font-semibold">Price:</span> {data?.price} $
                 </p>
               ) : (
                 <>
                   <p>
                     <span className="font-semibold">Deposit:</span>{" "}
-                    {data.deposit} $
+                    {data?.deposit} $
                   </p>
                   <p>
                     <span className="font-semibold">Mortgage:</span>
-                    {data.mortgage} $
+                    {data?.mortgage} $
                   </p>{" "}
                 </>
               )}
             </div>
             <div className="w-full mt-12 pb-4 overflow-hidden  ">
               <h5 className="mb-6 text-xl font-semibold">Description :</h5>
-              <p>{data.description}</p>
+              <p>{data?.description}</p>
               <div className="mt-12 mb-6">
                 <p className="font-semibold">Facilities:</p>
                 <div className="flex items-center justify-start gap-3 mt-6 flex-wrap">
-                  {data.facilities.length ? (
-                    data.facilities.map((f, index) => (
+                  {data?.facilities?.length ? (
+                    data?.facilities?.map((f, index) => (
                       <span
                         key={index}
                         className={`p-2 rounded-md bg-accent text-white`}
@@ -113,8 +113,8 @@ const PostView = ({ data }) => {
               <div className="mt-12">
                 <p className="font-semibold">Rules :</p>
                 <div className="flex items-center justify-start gap-3 flex-wrap mt-6">
-                  {data.rules.length ? (
-                    data.rules.map((r, index) => (
+                  {data?.rules?.length ? (
+                    data?.rules?.map((r, index) => (
                       <span
                         key={index}
                         className={`p-2 rounded-md bg-accent text-white`}
@@ -136,13 +136,13 @@ const PostView = ({ data }) => {
 
               <div className="w-full  flex items-center justify-center gap-2">
                 <a
-                  href={`tel:${data.phoneNumber}`}
+                  href={`tel:${data?.phoneNumber}`}
                   className={`px-8 flex transition-all duration-150 items-center gap-2 text-lg mt-16 text-slate-200 hover:text-white rounded-lg py-3 hover:shadow-lg hover:shadow-green-300 bg-green-500 `}
                 >
                   <SlCallOut className="text-xl" /> Call
                 </a>
                 <a
-                  href={`mailto:${data.email}`}
+                  href={`mailto:${data?.email}`}
                   target="blank"
                   className={`px-8 flex transition-all duration-150 items-center gap-2 text-lg mt-16 text-slate-200 hover:text-white rounded-lg py-3 hover:shadow-lg hover:shadow-blue-300 bg-blue-500 `}
                 >

@@ -20,11 +20,15 @@ export async function PublishPost(id) {
   return res;
 }
 
-export async function getPost() {
+export async function getPosts() {
   const response = await axios.get("/api/profile");
   console.log(response)
-  if(response.data){
-       return response.data.data;
-  }
-return
+return response.data.data
+}
+
+export async function getOnePost(id) {
+  const response = await axios.get(`/api/profile/${id}`);
+  console.log(response)
+
+return response.data.data;
 }

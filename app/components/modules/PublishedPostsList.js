@@ -1,13 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import PublicCard from "./PublicCard";
-import { getPost } from "@/app/apiCalls/post";
+import { getPosts } from "@/app/apiCalls/post";
 const PublishedPostsList = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getPost();
+      const data = await getPosts();
       setPosts(data);
     };
     fetchData();
