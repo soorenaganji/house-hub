@@ -98,18 +98,18 @@ const Feed = () => {
 
   return (
     <div className="w-full flex items-center justify-start flex-col gap-12 my-16 px-4">
-        <form className="flex w-full justify-center  items-center gap-1 sm:mt-0" onSubmit={handleSearchSubmit}>
+        <form className="flex min-h-[2.75rem] w-full justify-center  items-center " onSubmit={handleSearchSubmit}>
           <input
             id="search"
             type="text"
             value={searchTerm}
             onChange={handleSearchChange}
-            className="min-h-[2.75rem] placeholder:font-thin border bg-transparent w-64 outline-none px-2 border-gray-300 rounded py-2  text-sm text-primary "
-            placeholder="Search..."
+            className="h-[2.75rem] placeholder:font-thin border bg-transparent min-w-60 flex-shrink-0 outline-none px-2 border-gray-300 rounded-l-md py-2  text-sm text-primary "
+            placeholder="e.g Tehran"
           />
           <button
             type="submit"
-            className="bg-primary h-12 w-12 rounded-md text-white text-2xl flex items-center justify-center"
+            className="bg-primary h-[2.75rem] w-12 rounded-r-md text-white text-2xl flex-shrink-0 flex items-center justify-center"
           >
             <LuSearch />
           </button>
