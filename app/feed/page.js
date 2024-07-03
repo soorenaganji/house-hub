@@ -98,7 +98,7 @@ const Feed = () => {
 
   return (
     <div className="w-full flex items-center justify-start flex-col gap-12 my-16 px-4">
-        <form className="flex w-full  items-center gap-1 sm:mt-0" onSubmit={handleSearchSubmit}>
+        <form className="flex w-full justify-center  items-center gap-1 sm:mt-0" onSubmit={handleSearchSubmit}>
           <input
             id="search"
             type="text"
