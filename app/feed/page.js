@@ -97,7 +97,7 @@ const Feed = () => {
     });
 
   return (
-    <div className="w-full flex items-center justify-start flex-col gap-12 my-24 px-4">
+    <div className="w-full flex items-center justify-start flex-col gap-12 my-16 px-4">
         <form className="flex w-full  items-center gap-1 sm:mt-0" onSubmit={handleSearchSubmit}>
           <input
             id="search"
@@ -123,7 +123,7 @@ const Feed = () => {
             id="sort"
             value={sort}
             onChange={handleSortChange}
-            className="border border-gray-300 rounded py-2 px-1 text-sm text-primary select-hide-arrow outline-none"
+            className="border border-gray-300 rounded py-2 bg-white  px-1 text-sm text-primary select-hide-arrow outline-none"
           >
             <option value="date" className="text-primary">
               Newest
@@ -144,7 +144,7 @@ const Feed = () => {
             id="filter"
             value={filter}
             onChange={handleFilterChange}
-            className="border border-gray-300 rounded py-2 px-1 text-sm text-primary select-hide-arrow outline-none"
+            className="border border-gray-300 rounded py-2 bg-white  px-1 text-sm text-primary select-hide-arrow outline-none"
           >
             <option value="" className="text-primary">
               All
