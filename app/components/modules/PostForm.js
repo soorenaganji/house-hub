@@ -1,13 +1,12 @@
-"use client"
+"use client";
 import { useDropzone } from "react-dropzone";
 import { IoTrashSharp } from "react-icons/io5";
 import { CiImageOn } from "react-icons/ci";
 import { LuPlus } from "react-icons/lu";
 import InputField from "app/components/elements/InputField";
 import TextareaField from "app/components/elements/TextAreaField";
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
-import { deleteImageFromSupabase } from "@/app/helper/functions";
 import { useSession } from "next-auth/react";
 
 const PostForm = ({
@@ -17,10 +16,10 @@ const PostForm = ({
   setImages,
   isSubmitting,
   handleSubmit,
-  onDrop
+  onDrop,
 }) => {
   const { data: session } = useSession();
-console.log(session)
+  console.log(session);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -93,7 +92,7 @@ console.log(session)
   const handleDeleteImage = (index) => {
     setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
-  
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: "image/*",
@@ -104,7 +103,7 @@ console.log(session)
       ? image.url
       : typeof image === "string"
       ? image
-      : image.preview
+      : image.preview;
   }
 
   return (
@@ -149,137 +148,147 @@ console.log(session)
             </div>
           ))}
         </div>
-      </div>
-      {/* Title */}
-      <InputField
-        label="Title"
-        name="title"
-        type="text"
-        value={formData.title}
-        onChange={handleChange}
-      />
-      {/* Description */}
-      <TextareaField
-        label="Description"
-        name="description"
-        value={formData.description}
-        onChange={handleChange}
-      />
-      {/* City */}
-      <InputField
-        label="City"
-        name="city"
-        type="text"
-        value={formData.city}
-        onChange={handleChange}
-      />
-      {/* Street */}
-      <InputField
-        label="Street"
-        name="street"
-        type="text"
-        value={formData.street}
-        onChange={handleChange}
-      />
-      {/* Zipcode */}
-      <InputField
-        label="Zipcode"
-        name="zipcode"
-        type="text"
-        value={formData.zipcode}
-        onChange={handleChange}
-      />
-      {/* Size */}
-      <InputField
-        label="Size"
-        name="size"
-        type="number"
-        value={formData.size}
-        onChange={handleChange}
-      />
-      {/* Bedrooms Count */}
-      <InputField
-        label="Bedrooms"
-        name="bedroomsCount"
-        type="number"
-        value={formData.bedroomsCount}
-        onChange={handleChange}
-      />
-      {/* Bathrooms Count */}
-      <InputField
-        label="Bathrooms"
-        name="bathroomsCount"
-        type="number"
-        value={formData.bathroomsCount}
-        onChange={handleChange}
-      />
-      {/* Phone Number */}
-      <InputField
-        label="Phone Number"
-        name="phoneNumber"
-        type="number"
-        value={formData.phoneNumber}
-        onChange={handleChange}
-      />
-      {/* Email */}
-      <InputField
-        label="Email"
-        name="email"
-        type="email"
-        value={formData.email}
-        readOnly={true}
-      />
-      {/* Rental or Sell */}
-      <div className="flex items-center space-x-4">
-        <button
-          className={`w-16 h-16 rounded-xl transition-all duration-150 
-            ${formData.rentalOrSell === 'rental' ? 'bg-secondary shadow-lg shadow-secondary/80 text-white' : 'bg-gray-300 text-gray-600'}
+        <div className="w-full h-full flex items-start justify-start flex-col md:gap-12 lg:gap-32 md:flex-wrap md:flex-row  ">
+          {/* Title */}
+          <InputField
+            label="Title"
+            name="title"
+            type="text"
+            value={formData.title}
+            onChange={handleChange}
+          />
+          {/* Description */}
+          <TextareaField
+            label="Description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+          />
+          {/* City */}
+          <InputField
+            label="City"
+            name="city"
+            type="text"
+            value={formData.city}
+            onChange={handleChange}
+          />
+          {/* Street */}
+          <InputField
+            label="Street"
+            name="street"
+            type="text"
+            value={formData.street}
+            onChange={handleChange}
+          />
+          {/* Zipcode */}
+          <InputField
+            label="Zipcode"
+            name="zipcode"
+            type="text"
+            value={formData.zipcode}
+            onChange={handleChange}
+          />
+          {/* Size */}
+          <InputField
+            label="Size"
+            name="size"
+            type="number"
+            value={formData.size}
+            onChange={handleChange}
+          />
+          {/* Bedrooms Count */}
+          <InputField
+            label="Bedrooms"
+            name="bedroomsCount"
+            type="number"
+            value={formData.bedroomsCount}
+            onChange={handleChange}
+          />
+          {/* Bathrooms Count */}
+          <InputField
+            label="Bathrooms"
+            name="bathroomsCount"
+            type="number"
+            value={formData.bathroomsCount}
+            onChange={handleChange}
+          />
+          {/* Phone Number */}
+          <InputField
+            label="Phone Number"
+            name="phoneNumber"
+            type="number"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+          />
+          {/* Email */}
+          <InputField
+            label="Email"
+            name="email"
+            type="email"
+            value={formData.email}
+            readOnly={true}
+          />
+          {/* Rental or Sell */}
+          <div className="flex items-center space-x-4 mb-8">
+            <button
+              className={`w-16 h-16 rounded-xl transition-all duration-150 
+            ${
+              formData.rentalOrSell === "rental"
+                ? "bg-secondary shadow-lg shadow-secondary/80 text-white"
+                : "bg-gray-300 text-gray-600"
+            }
           `}
-          onClick={() => handleSwitchToggle()}
-          disabled={formData.rentalOrSell === 'rental'}
-        >
-          Rent
-        </button>
-        <button
-          className={`w-16 h-16 rounded-xl transition-all duration-150 
-            ${formData.rentalOrSell === 'sell' ? 'bg-primary shadow-lg shadow-primary/80 text-white' : 'bg-gray-300 text-gray-600'}
+              onClick={() => handleSwitchToggle()}
+              disabled={formData.rentalOrSell === "rental"}
+            >
+              Rent
+            </button>
+            <button
+              className={`w-16 h-16 rounded-xl transition-all duration-150 
+            ${
+              formData.rentalOrSell === "sell"
+                ? "bg-primary shadow-lg shadow-primary/80 text-white"
+                : "bg-gray-300 text-gray-600"
+            }
           `}
-          onClick={() => handleSwitchToggle()}
-          disabled={formData.rentalOrSell === 'sell'}
-        >
-          Sale
-        </button>
+              onClick={() => handleSwitchToggle()}
+              disabled={formData.rentalOrSell === "sell"}
+            >
+              Sale
+            </button>
+          </div>
+          {/* Deposit (if rental) */}
+          {formData.rentalOrSell === "rental" && (
+            <InputField
+              label="Deposit"
+              name="deposit"
+              type="number"
+              value={formData.deposit}
+              onChange={handleChange}
+            />
+          )}
+          {/* Mortgage (if rental) */}
+          {formData.rentalOrSell === "rental" && (
+            <InputField
+              label="Mortgage per month"
+              name="mortgage"
+              type="number"
+              value={formData.mortgage}
+              onChange={handleChange}
+            />
+          )}
+          {/* Price (if sell) */}
+          {formData.rentalOrSell === "sell" && (
+            <InputField
+              label="Price"
+              name="price"
+              type="number"
+              value={formData.price}
+              onChange={handleChange}
+            />
+          )}
+        </div>
       </div>
-      {/* Deposit (if rental) */}
-      {formData.rentalOrSell === "rental" && (
-        <InputField
-          label="Deposit"
-          name="deposit"
-          type="number"
-          value={formData.deposit}
-          onChange={handleChange}
-        />
-      )}
-      {/* Mortgage (if rental) */}
-      {formData.rentalOrSell === "rental" && (
-        <InputField
-          label="Mortgage per month"
-          name="mortgage"
-          type="number"
-          value={formData.mortgage}
-          onChange={handleChange}
-        />
-      )}
-      {/* Price (if sell) */}
-      {formData.rentalOrSell === "sell" && (
-        <InputField
-          label="Price"
-          name="price"
-          type="number"
-          value={formData.price}
-          onChange={handleChange}
-        />
-      )}
       {/* Facilities */}
       <div className="space-y-4">
         <h6 className="text-xl font-bold">Facilities</h6>
@@ -287,7 +296,11 @@ console.log(session)
           <button
             type="button"
             onClick={handleAddFacility}
-            className={`border ${formData.rentalOrSell === "rental" ? "border-secondary" : "border-primary"} px-3 py-2 rounded-lg flex items-center space-x-2`}
+            className={`border ${
+              formData.rentalOrSell === "rental"
+                ? "border-secondary"
+                : "border-primary"
+            } px-3 py-2 rounded-lg flex items-center space-x-2`}
           >
             <LuPlus /> Add Facility
           </button>
@@ -310,7 +323,7 @@ console.log(session)
             <button
               type="button"
               onClick={() => handleDeleteFacility(index)}
-              className="bg-red-500 text-white p-3 text-lg -mb-1 rounded-lg"
+              className="bg-red-500 text-white p-3 text-lg mb-2 rounded-lg"
             >
               <IoTrashSharp />
             </button>
@@ -324,7 +337,11 @@ console.log(session)
           <button
             type="button"
             onClick={handleAddRule}
-            className={`border ${formData.rentalOrSell === "rental" ? "border-secondary" : "border-primary"} px-3 py-2 rounded-lg flex items-center space-x-2`}
+            className={`border ${
+              formData.rentalOrSell === "rental"
+                ? "border-secondary"
+                : "border-primary"
+            } px-3 py-2 rounded-lg flex items-center space-x-2`}
           >
             <LuPlus /> Add Rule
           </button>
@@ -359,8 +376,16 @@ console.log(session)
         type="submit"
         className={`px-8 py-4 text-lg rounded-lg font-semibold mt-16 mx-auto transition-all duration-150 ${
           isSubmitting
-            ? `opacity-50  ${formData.rentalOrSell === "rental" ? "bg-secondary" : "bg-primary"} text-white cursor-not-allowed`
-            : `${formData.rentalOrSell === "rental" ? "bg-secondary" : "bg-primary"} text-white`
+            ? `opacity-50  ${
+                formData.rentalOrSell === "rental"
+                  ? "bg-secondary"
+                  : "bg-primary"
+              } text-white cursor-not-allowed`
+            : `${
+                formData.rentalOrSell === "rental"
+                  ? "bg-secondary"
+                  : "bg-primary"
+              } text-white`
         }`}
         disabled={isSubmitting}
       >

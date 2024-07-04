@@ -30,7 +30,6 @@ const AddPost = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [images, setImages] = useState([]);
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm(formData, toast)) return;
@@ -76,9 +75,10 @@ const AddPost = () => {
       setIsSubmitting(false);
     }
   };
+
   return (
-    <div className="p-4 mt-12">
-      <h5 className="text-2xl font-extrabold mb-8 text-center">Add New Post</h5>
+    <div className="p-4 mt-12 lg:mt-16 xl:mt-20 lg:px-12 xl:px-20">
+      <h5 className="text-2xl font-extrabold mb-8 text-center lg:text-3xl xl:text-4xl">Add New Post</h5>
       <PostForm
         formData={formData}
         setFormData={setFormData}
