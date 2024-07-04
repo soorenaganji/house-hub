@@ -266,7 +266,7 @@ const DashBoardSidebar = ({ children, role }) => {
           </ul>
         )}
       </div>
-      <div className="flex-1 p-4" onClick={() => setIsMenuOpen(false)}>
+      <div className="flex-1 p-4 md:px-8 lg:px-10" onClick={() => setIsMenuOpen(false)}>
         {children}
       </div>
     </div>
