@@ -12,7 +12,10 @@ export async function POST(req) {
     // Validate required fields
     if (!email || !password || !name || !lastName) {
       return NextResponse.json(
-        { error: "Please provide valid data for email, password, name, and last name" },
+        {
+          error:
+            "Please provide valid data for email, password, name, and last name",
+        },
         { status: 422 }
       );
     }
@@ -30,7 +33,9 @@ export async function POST(req) {
       email,
       password: hashedPassword,
       name,
-      lastName
+      lastName,
+      userType: 'REALTOR',
+      role : "USER"
     });
 
     console.log(newUser);
