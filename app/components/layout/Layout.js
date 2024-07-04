@@ -1,3 +1,4 @@
+// components/Layout.jsx
 "use client";
 import Header from "./Header";
 import Link from "next/link";
@@ -5,6 +6,7 @@ import { useState } from "react";
 import Footer from "./Footer";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
+
 const Layout = ({ children }) => {
   const { data } = useSession();
   const [isNavBarOpen, setIsNavbarOpen] = useState(false);
@@ -17,7 +19,7 @@ const Layout = ({ children }) => {
     <>
       {!isAuthPage ? (
         <>
-          <div className="transition-all duration-150 fixed z-50 top-0  w-full">
+          <div className="transition-all duration-150 fixed z-50 top-0 w-full">
             <Header
               isNavBarOpen={isNavBarOpen}
               setIsNavbarOpen={setIsNavbarOpen}
@@ -45,36 +47,44 @@ const Layout = ({ children }) => {
                   {data ? (
                     <Link
                       onClick={() => setIsNavbarOpen(false)}
-                      href={"/dashboard"}
+                      href="/dashboard"
                     >
                       Dashboard
                     </Link>
                   ) : (
                     <>
-                      {" "}
                       <Link
                         onClick={() => setIsNavbarOpen(false)}
-                        href={"/login"}
+                        href="/login"
                         className="bg-primary text-white w-20 h-10 mx-auto flex items-center justify-center rounded-md"
                       >
                         Login
                       </Link>
                       <Link
                         onClick={() => setIsNavbarOpen(false)}
-                        href={"/signup"}
+                        href="/signup"
                         className="text-primary mx-auto"
                       >
                         Signup
-                      </Link>{" "}
+                      </Link>
                     </>
                   )}
-                  <Link onClick={() => setIsNavbarOpen(false)} href={"/feed?sort=date&filter=rental"}>
+                  <Link
+                    onClick={() => setIsNavbarOpen(false)}
+                    href="/feed?sort=date&filter=rental"
+                  >
                     Rent
                   </Link>
-                  <Link onClick={() => setIsNavbarOpen(false)} href={"/feed?sort=date&filter=sell"}>
+                  <Link
+                    onClick={() => setIsNavbarOpen(false)}
+                    href="/feed?sort=date&filter=sell"
+                  >
                     Buy
                   </Link>
-                  <Link onClick={() => setIsNavbarOpen(false)} href={"/feed?sort=date&filter=sell"}>
+                  <Link
+                    onClick={() => setIsNavbarOpen(false)}
+                    href="/feed?sort=date&filter=sell"
+                  >
                     Sell
                   </Link>
                 </div>

@@ -1,13 +1,14 @@
-// components/Footer.js
-import logo from "public/Frame.png";
+// components/Footer.jsx
+"use client";
 import Image from "next/image";
+import Link from "next/link";
+import logo from "public/Frame.png";
 import {
   FaFacebookF,
   FaInstagram,
   FaTwitter,
   FaLinkedinIn,
 } from "react-icons/fa";
-import Link from "next/link";
 
 const footerSections = [
   {
@@ -45,10 +46,10 @@ const socialMediaLinks = [
 
 const Footer = () => {
   return (
-    <footer className="bg-white py-10 border-t mt-16">
+    <footer className="bg-white py-10 border-t mt-16 ">
       <div className="container mx-auto px-4">
-        <div className="flex flex-wrap justify-between">
-          <div>
+        <div className="flex flex-wrap justify-between my-8">
+          <div className="w-full md:w-auto">
             <div className="flex items-center gap-3">
               <Image
                 src={logo}
@@ -60,15 +61,21 @@ const Footer = () => {
               <span className="text-xl font-semibold">HouseHub</span>
             </div>
           </div>
-          <div className="flex flex-wrap w-full mt-6 md:mt-0 md:w-auto">
+          <div className="flex flex-wrap w-full mt-6 gap-6 md:mt-0 md:w-auto">
             {footerSections.map((section) => (
-              <div key={section.title} className="w-1/2 md:w-auto mb-6">
+              <div
+                key={section.title}
+                className="w-1/2 md:w-auto mb-6 md:mb-0 md:mr-8"
+              >
                 <h5 className="font-bold text-gray-900 mb-2">
                   {section.title}
                 </h5>
-                <ul className="text-[#000929]">
+                <ul className="text-[#000929]  ">
                   {section.links.map((link) => (
-                    <li key={link} className="mb-1 text-sm">
+                    <li
+                      key={link}
+                      className="md:mb-3 mb-1 text-sm hover:text-primary transition-all duration-150"
+                    >
                       <Link href={"/"}>{link}</Link>
                     </li>
                   ))}
