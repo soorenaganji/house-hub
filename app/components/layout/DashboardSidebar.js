@@ -176,11 +176,11 @@ const DashBoardSidebar = ({ children, role }) => {
           </div>
         )}
       </div>
-      <div className="hidden md:block md:w-64 bg-white shadow-lg p-4 lg:shadow-none lg:rounded-none lg:border-r">
+      <div className="hidden md:block md:w-64 bg-white shadow-lg p-4 md:shadow-none md:rounded-none md:border-r">
         <div className="mb-4">
           <Link
             href="/dashboard"
-            className="flex items-center gap-2 text-primary lg:hidden"
+            className="flex items-center gap-2 text-primary md:hidden"
           >
             <MdSpaceDashboard className="text-2xl" />
             <span>Dashboard Menu</span>
