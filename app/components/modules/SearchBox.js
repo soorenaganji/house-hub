@@ -34,7 +34,7 @@ const SearchBox = () => {
   };
 
   return (
-    <div className="w-full bg-white shadow-lg rounded-xl mt-8">
+    <div className="w-full bg-white shadow-lg rounded-xl mt-8 md:w-96 ">
       <div className="flex items-center justify-between px-8 py-4 border-b">
         {fields.map((field) => (
           <button

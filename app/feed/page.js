@@ -16,7 +16,9 @@ const Feed = () => {
   const [loading, setLoading] = useState(true);
   const [sort, setSort] = useState(searchParams.get("sort") || "date");
   const [filter, setFilter] = useState(searchParams.get("filter") || "");
-  const [searchTerm, setSearchTerm] = useState(searchParams.get("search") || "");
+  const [searchTerm, setSearchTerm] = useState(
+    searchParams.get("search") || ""
+  );
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -97,33 +99,36 @@ const Feed = () => {
     });
 
   return (
-    <div className="w-full flex items-center justify-start flex-col gap-12 my-16 px-4">
-        <form className="flex min-h-[2.75rem] w-full justify-center gap-1  items-center " onSubmit={handleSearchSubmit}>
-          <input
-            id="search"
-            type="text"
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className="h-[2.75rem] placeholder:font-thin border bg-transparent min-w-60 flex-shrink-0 outline-none px-2 border-gray-300 rounded-md py-2  text-sm text-primary "
-            placeholder="e.g Tehran"
-          />
-          <button
-            type="submit"
-            className="bg-primary h-[2.75rem] w-12 rounded-md text-white text-2xl flex-shrink-0 flex items-center justify-center"
-          >
-            <LuSearch />
-          </button>
-        </form>
+    <div className="w-full flex items-center justify-center flex-col md:flex-row flex-wrap md:px-12 md:gap-16 gap-12 my-16 px-4">
+      <form
+        className="flex min-h-[2.75rem] w-full justify-center gap-1  items-center "
+        onSubmit={handleSearchSubmit}
+      >
+        <input
+          id="search"
+          type="text"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className="h-[2.75rem] md:w-96 md:h-14 md:rounded-xl placeholder:font-thin md:text-lg border bg-transparent min-w-60 flex-shrink-0 outline-none px-2 border-gray-300 rounded-md py-2  text-sm text-primary "
+          placeholder="e.g Tehran"
+        />
+        <button
+          type="submit"
+          className="bg-primary h-[2.75rem] w-12 md:h-14 md:rounded-xl md:w-14 rounded-md text-white text-2xl md:text-3xl flex-shrink-0 flex items-center justify-center"
+        >
+          <LuSearch />
+        </button>
+      </form>
       <div className="w-full flex flex-row justify-between items-center mb-6 gap-4">
-        <div className="flex items-center gap-1">
-          <label htmlFor="sort" className="text-sm font-medium">
+        <div className="flex items-center gap-1 md:gap-3">
+          <label htmlFor="sort" className="text-sm font-medium md:text-lg">
             Sort:
           </label>
           <select
             id="sort"
             value={sort}
             onChange={handleSortChange}
-            className="border border-gray-300 rounded py-2 bg-white  px-1 text-sm text-primary select-hide-arrow outline-none"
+            className="border border-gray-300 rounded py-2 bg-white  px-1 text-sm text-primary select-hide-arrow outline-none md:w-36 md:h-12 md:text-lg"
           >
             <option value="date" className="text-primary">
               Newest
@@ -136,15 +141,15 @@ const Feed = () => {
             </option>
           </select>
         </div>
-        <div className="flex items-center gap-1 sm:mt-0">
-          <label htmlFor="filter" className="text-sm font-medium">
+        <div className="flex items-center gap-1 md:gap-3 sm:mt-0">
+          <label htmlFor="filter" className="text-sm font-medium md:text-lg">
             Filter:
           </label>
           <select
             id="filter"
             value={filter}
             onChange={handleFilterChange}
-            className="border border-gray-300 rounded py-2 bg-white  px-1 text-sm text-primary select-hide-arrow outline-none"
+            className="border border-gray-300 rounded py-2 bg-white  px-1 text-sm text-primary select-hide-arrow outline-none md:w-36 md:h-12 md:text-lg"
           >
             <option value="" className="text-primary">
               All

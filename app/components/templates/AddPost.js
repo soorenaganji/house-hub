@@ -75,6 +75,26 @@ const AddPost = () => {
       setIsSubmitting(false);
     }
   };
+  const onDrop = useCallback((acceptedFiles) => {
+    setImages((prevImages) =>
+      prevImages
+        ? [
+            ...prevImages,
+            ...acceptedFiles.map((file) =>
+              Object.assign(file, {
+                preview: URL.createObjectURL(file),
+              })
+            ),
+          ]
+        : [
+            ...acceptedFiles.map((file) =>
+              Object.assign(file, {
+                preview: URL.createObjectURL(file),
+              })
+            ),
+          ]
+    );
+  }, []);
 
   return (
     <div className="p-4 mt-12 lg:mt-16 xl:mt-20 lg:px-12 xl:px-20">
@@ -86,6 +106,7 @@ const AddPost = () => {
         setImages={setImages}
         isSubmitting={isSubmitting}
         handleSubmit={handleSubmit}
+        onDrop={onDrop}
       />
     </div>
   );

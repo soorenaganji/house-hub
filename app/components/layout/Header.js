@@ -33,7 +33,7 @@ const Header = ({ isNavBarOpen, setIsNavbarOpen }) => {
     <>
       <header
         className={`flex justify-between  items-center px-4 lg:px-14 py-4 transition-all duration-350 w-full ${
-          isScrolled ? "bg-white shadow-md" : "bg-[#ffffff85]"
+          isScrolled ? "bg-white shadow-md" : "bg-[#ffffff85] border-b-2 md:bg-white"
         } ${isNavBarOpen ? "shadow-md" : ""}`}
       >
         <Link href="/" className="flex items-center gap-[1px]">
@@ -48,13 +48,13 @@ const Header = ({ isNavBarOpen, setIsNavbarOpen }) => {
         </Link>
 
         <nav className="hidden md:flex space-x-6">
-          <Link href="/rent">
+          <Link href="/feed?filter=rental">
             <p className="text-gray-700 hover:text-primary py-4">Rent</p>
           </Link>
-          <Link href="/buy">
+          <Link href="/feed?filter=sell">
             <p className="text-gray-700 hover:text-primary py-4">Buy</p>
           </Link>
-          <Link href="/sell">
+          <Link href="/feed?filter=sell">
             <p className="text-gray-700 hover:text-primary py-4">Sell</p>
           </Link>
           <div className="relative group">

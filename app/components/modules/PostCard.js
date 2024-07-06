@@ -67,7 +67,7 @@ console.log(size)
 
   return (
     <>
-      <div className="flex-shrink-0 w-[250px]">
+      <div className="flex-shrink-0 w-[250px] max-h-[457px]">
         <div className={`  relative w-24 top-8 -mt-2`}>
           <div
             className={`bg-white/80 backdrop-blur-lg ${
