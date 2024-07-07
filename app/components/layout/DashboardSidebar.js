@@ -65,8 +65,8 @@ const DashBoardSidebar = ({ children, role }) => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen">
-      <div className="md:hidden relative">
+    <div className="flex flex-col md:flex-row min-h-screen  ">
+      <div className="md:hidden relative mt-6">
         <button
           onClick={handleMenuToggle}
           className="p-2 border rounded-xl flex items-center group justify-center gap-2 float-left hover:bg-primary hover:shadow-indigo-200 hover:text-white hover:border-none hover:shadow-lg transition-all duration-150"
@@ -266,8 +266,11 @@ const DashBoardSidebar = ({ children, role }) => {
           </ul>
         )}
       </div>
-      <div className="flex-1 p-4 md:px-8 lg:px-10" onClick={() => setIsMenuOpen(false)}>
-        {children}
+      <div
+        className="flex-1 p-4 md:px-8 lg:px-10"
+        onClick={() => setIsMenuOpen(false)}
+      >
+        <main className={"px-4 md:px-8"}>{children}</main>
       </div>
     </div>
   );

@@ -159,10 +159,10 @@ const Account = () => {
   }
 
   return (
-    <div className="max-w-sm mx-auto mt-24 md:max-w-full md:px-6">
+    <div className=" mx-auto mt-24 md:max-w-full ">
       {isEditing ? (
         <div className="">
-          <div className="flex items-center justify gap-16 w-full flex-wrap flex-col md:flex-row">
+          <div className="flex items-center justify gap-16 w-full md:flex-wrap flex-col md:flex-row">
             <InputField
               label="Name"
               name="name"
@@ -188,15 +188,15 @@ const Account = () => {
               </span>
             </p>
           </div>
-          <div className="flex space-x-2 mt-4 md:mt-36 md:justify-end  items-center">
+          <div className="flex md:block gap-x-2 mt-4 md:mt-36 md:justify-center  items-center">
             <button
-              className="w-16 md:w-64  md:mx-auto bg-secondary/10 border border-secondary text-secondary rounded-lg py-2"
+              className="w-16 md:w-44 md:h-12  md:mx-auto bg-secondary/10 border border-secondary text-secondary rounded-lg py-2"
               onClick={handleCancel}
             >
               Cancel
             </button>
             <button
-              className={`w-16 md:w-64   bg-primary text-white rounded-lg py-2 ${
+              className={`w-16 md:w-44 md:h-12 md:ml-12  bg-primary text-white rounded-lg py-2 ${
                 submitting ? "opacity-50" : ""
               }`}
               onClick={handleSubmit}
@@ -208,7 +208,7 @@ const Account = () => {
         </div>
       ) : (
         <div>
-          <div className="w-full max-w-96 py-4 rounded-lg bg-primary flex items-center justify-between px-3 md:px-6 lg:px-8">
+          <div className="w-full max-w-md md:mx-auto  py-4 rounded-lg bg-primary flex items-center justify-between px-3 md:px-6 lg:px-8">
             <div className="text-white flex items-center justify-start gap-4 ">
               <Image
                 src={`https://avatar.iran.liara.run/username?username=${user.name}+${user.lastName}`}
@@ -231,9 +231,9 @@ const Account = () => {
               <FiEdit3 />
             </button>
           </div>
-          <div className="mt-16 mb-12">
+          <div className="mt-16 mb-12 md:my-24">
             <h3 className="text-xl font-bold mb-4">Your Posts</h3>
-            <div className="flex flex-row overflow-x-scroll space-x-12 snap-x snap-mandatory py-6 hide-scroll-bar px-8 md:px-12 lg:px-16">
+            <div className="flex md:items-center md:justify-center flex-row overflow-x-scroll space-x-12 snap-x snap-mandatory py-6 hide-scroll-bar px-8 md:px-12 lg:px-16">
               {user.posts.length ? (
                 user?.posts?.map((post) => (
                   <DashboardCard key={post.id} data={post} />
@@ -255,7 +255,7 @@ const Account = () => {
               )}
             </div>
           </div>
-          <div className="flex items-center mb-6 justify-between gap-3 flex-row-reverse">
+          <div className="flex items-center mb-6 justify-center  gap-3 flex-row">
             <button
               className="w-full md:w-64  text-lg bg-secondary/10 border flex items-center justify-center gap-3 border-secondary text-secondary rounded-lg py-3"
               onClick={handleLogout}
