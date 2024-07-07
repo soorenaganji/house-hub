@@ -177,7 +177,7 @@ const Signup = () => {
           </p>
           <button
             type="submit"
-            className={`w-full h-12 lg:h-14 lg:text-lg p-2 rounded-lg text-white transition-all duration-400 ${
+            className={`w-full h-12 lg:h-14 mb-24 lg:text-lg p-2 rounded-lg text-white transition-all duration-400 ${
               Object.keys(errors).length
                 ? "bg-primary opacity-60"
                 : "bg-primary hover:shadow-lg hover:shadow-primary/60"
