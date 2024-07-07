@@ -3,12 +3,9 @@
 import { useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import SearchBox from "./SearchBox";
-import NumbersBox from "./NumbersBox";
-import number1 from "public/number1.png";
-import number2 from "public/number2.png";
 import "@/app/globals.css";
 import Image from "next/image";
-import banner from "@/public/banner.svg";
+import banner from "@/public/banner.png";
 const HeroSection = () => {
   const words = ["Buy", "Sell", "Rent"];
   return (
@@ -38,7 +35,7 @@ const HeroSection = () => {
 
         <Image
           src={banner}
-          className="md:-mr-24 md:mt-12 hidden md:block md:w-[70%] md:h-screen float-end flex-shrink-0 w-0"
+          className="md:-mr-24 md:mt-12 hidden md:block md:w-[54%] md:h-screen float-end flex-shrink-0 w-0"
         />
       </div>
     </>

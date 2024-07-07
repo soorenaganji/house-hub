@@ -1,7 +1,7 @@
 import Image from "next/image";
-const NumbersBox = ({ icon, title, description  }) => {
+const NumbersBox = ({ icon, title, description }) => {
   return (
-    <div data-aos={"flip-left"}>
+    <div data-aos={"flip-left"} className="block md:hidden">
       <Image
         src={icon}
         width={64}
