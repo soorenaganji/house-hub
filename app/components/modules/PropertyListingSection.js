@@ -14,7 +14,7 @@ const PropertyListingSection =  () => {
       </div>
       <Link
         href={"/feed"}
-        className="font-semibold px-8 py-4 text-white mx-auto rounded-lg bg-primary"
+        className="font-semibold px-8 py-4 text-white mx-auto rounded-lg bg-primary md:bg-accent "
       >
         Browse more properties
       </Link>

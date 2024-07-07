@@ -14,7 +14,7 @@ const PublishedPostsList = () => {
   }, []);
 
   return (
-    <div className="flex flex-row overflow-x-scroll space-x-12 snap-x snap-mandatory py-6 hide-scroll-bar px-12 flex-shrink-0">
+    <div className="flex flex-row overflow-x-scroll md:overflow-hidden space-x-12 snap-x snap-mandatory py-6 hide-scroll-bar px-12 md:px-0 flex-shrink-0 md:flex-row flex-wrap md:gap-y-12 md:items-center md:justify-center">
       {posts.length ? (
         posts.map((post, index) => (
           <div key={index}>

@@ -41,14 +41,14 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <div>
+    <div className="md:px-40">
       <h5 className="mb-4 text-3xl text-center font-bold">Testimonials</h5>
       <p className="text-gray-500 font-light text-center mb-14">
         See what our property managers, landlords, and tenants have to say
       </p>
       <div>
         <p
-          className={`font-medium text-xl leading-relaxed text-gray-900 text-center mb-12 transition-opacity duration-500 ${
+          className={`font-medium md:text-2xl text-xl leading-loose text-gray-900 text-center mb-12 transition-opacity duration-500 ${
             fade ? "opacity-0" : "opacity-100"
           }`}
         >

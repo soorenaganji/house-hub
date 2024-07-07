@@ -5,7 +5,7 @@ import icon3 from "public/Benefit3.svg";
 import icon4 from "public/Benefit4.svg";
 const BenefitsBox = () => {
   return (
-    <div className="px-3 flex flex-col gap-6 justify-center align-center mt-9">
+    <div className="px-3 flex flex-col gap-6 justify-center align-center mt-9 md:grid md:grid-cols-2 md:w-[50%] md:h-full  md:gap-y-36 ">
       <Benefits
         image={icon1}
         title={"Property Insurance"}

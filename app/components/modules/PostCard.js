@@ -67,7 +67,7 @@ console.log(size)
 
   return (
     <>
-      <div className="flex-shrink-0 w-[250px] max-h-[457px]">
+      <div className="flex-shrink-0 w-[250px] ">
         <div className={`  relative w-24 top-8 -mt-2`}>
           <div
             className={`bg-white/80 backdrop-blur-lg ${
@@ -83,7 +83,7 @@ console.log(size)
           <Image
             src={handleImageUrl()}
             alt={title}
-            className={`w-[400px] h-48 object-cover rounded-t-lg mb-1 `}
+            className={`w-[400px] h-48 object-cover rounded-t-lg mb-1 -mt-4 `}
             width={400}
             height={300}
           />
@@ -106,7 +106,7 @@ console.log(size)
             )}
           </p>
         </div>
-        <div className="font-bold text-xl my-2">{title}</div>
+        <div className="font-bold text-lg my-2">{title}</div>
         <div className="text-gray-500 mb-3">{city}</div>
         <div
           className={`flex items-center text-gray-700 text-sm pb-2 border-b `}

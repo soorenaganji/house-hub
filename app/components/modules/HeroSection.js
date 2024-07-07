@@ -35,7 +35,7 @@ const HeroSection = () => {
 
         <Image
           src={banner}
-          className="md:-mr-24 md:mt-12 hidden md:block md:w-[54%] md:h-screen float-end flex-shrink-0 w-0"
+          className="md:-mr-24 md:mt-12 hidden md:block md:w-[50%] md:h-screen float-end flex-shrink-0 w-0"
         />
       </div>
     </>

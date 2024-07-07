@@ -2,7 +2,7 @@ import PostCard from "./PostCard";
 import Link from "next/link";
 const PublicCard = ({ data }) => {
   return (
-    <div className="max-w-[250px] rounded-lg shadow-lg bg-white flex-shrink-0 snap-center">
+    <div className="max-w-[250px] max-h-[457px] rounded-lg shadow-lg bg-white flex-shrink-0 snap-center">
       <PostCard {...data} />
       <div className=" px-2 pb-2">
         <Link
