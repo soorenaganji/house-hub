@@ -10,8 +10,8 @@ export async function GET(req) {
     const allPosts = await Profile.find()
     const posts = await Profile.find({ published: true })
     const session = await getServerSession(req);
-    const userEmail = await session.user.email;
-    const user = await User.findOne({ email: userEmail });
+    const userEmail = session ? await session.user.email : null;
+    const user = session ? await  User.findOne({ email: userEmail }) : null;
     if (user && user.role === "ADMIN") {
       return NextResponse.json(
         {
