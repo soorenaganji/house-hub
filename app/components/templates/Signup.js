@@ -6,6 +6,7 @@ import { useSession, signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import { validate } from "app/helper/validate";
 import { createUser } from "app/apiCalls/auth";
+import PasswordInput from "@/app/components/elements/PasswordInput"; // Import the PasswordInput component
 
 const Signup = () => {
   const router = useRouter();
@@ -145,36 +146,32 @@ const Signup = () => {
           <p className="text-sm mt-3 text-red-500">
             {touched.Email && errors.Email}
           </p>
-          <input
+          <PasswordInput
             onChange={changeHandler}
             onFocus={touchHandler}
             name="Password"
-            type="password"
             placeholder="******"
             className={`w-full h-12 lg:h-14 lg:text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-4 rounded-md border outline-none ${
               errors.Password && touched.Password
                 ? "border-red-400"
                 : "border-slate-300"
             }`}
+            error={errors.Password}
+            touched={touched.Password}
           />
-          <p className="text-sm mt-3 text-red-500">
-            {touched.Password && errors.Password}
-          </p>
-          <input
+          <PasswordInput
             onChange={changeHandler}
             onFocus={touchHandler}
             name="Password2"
-            type="password"
             placeholder="******"
             className={`w-full h-12 lg:h-14 lg:text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-4 rounded-md border outline-none ${
               errors.Password2 && touched.Password2
                 ? "border-red-400"
                 : "border-slate-300"
             }`}
+            error={errors.Password2}
+            touched={touched.Password2}
           />
-          <p className="text-sm mt-3 text-red-500">
-            {touched.Password2 && errors.Password2}
-          </p>
           <button
             type="submit"
             className={`w-full h-12 lg:h-14 mb-24 lg:text-lg p-2 rounded-lg text-white transition-all duration-400 ${

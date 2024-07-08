@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 import { toast } from "react-hot-toast";
+import PasswordInput from "@/app/components/elements/PasswordInput"; // Import the PasswordInput component
 
 const Login = () => {
   const { status } = useSession();
@@ -74,10 +75,9 @@ const Login = () => {
           />
         </div>
         <div className="mx-auto">
-          <input
+          <PasswordInput
             onChange={changeHandler}
             name="password"
-            type="password"
             placeholder="Password"
             className={`lg:w-96 w-72 h-14 lg:text-lg placeholder:text-slate-500 focus:border-primary focus:shadow-md p-4 rounded-md border outline-none `}
           />
