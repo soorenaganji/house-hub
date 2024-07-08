@@ -4,11 +4,22 @@ import { getServerSession } from "next-auth";
 import User from "@/app/models/User";
 import Profile from "@/app/models/Profile";
 import { Types } from "mongoose";
-export async function GET() {
+export async function GET(req) {
   try {
     await connectDB();
-
+    const allPosts = await Profile.find()
     const posts = await Profile.find({ published: true })
+    const session = await getServerSession(req);
+    const userEmail = await session.user.email;
+    const user = await User.findOne({ email: userEmail });
+    if (user && user.role === "ADMIN") {
+      return NextResponse.json(
+        {
+          data: allPosts,
+        },
+        { status: 200 }
+      );
+    }
 
     return NextResponse.json(
       {

@@ -21,9 +21,10 @@ const PostCard = ({
   bedroomsCount,
   bathroomsCount,
   size,
+  published,
 }) => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
-console.log(size)
+  console.log(size);
   const handleImageUrl = () => {
     if (
       imageUrls &&
@@ -107,6 +108,11 @@ console.log(size)
           </p>
         </div>
         <div className="font-bold text-lg my-2">{title}</div>
+        {published ? null : (
+          <p className="text-xs mb-2 p-1 rounded bg-yellow-100 w-1/3 text-center text-slate-600 ">
+            Private
+          </p>
+        )}
         <div className="text-gray-500 mb-3">{city}</div>
         <div
           className={`flex items-center text-gray-700 text-sm pb-2 border-b `}

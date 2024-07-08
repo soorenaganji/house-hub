@@ -9,8 +9,6 @@ export async function GET(req, context) {
     const { params } = context;
     const { postId } = params;
 
-    console.log("ID :" ,postId);
-
     const post = await Profile.findOne({ _id: postId });
     if (!post) {
       return NextResponse.json(

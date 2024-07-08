@@ -196,7 +196,7 @@ const DashBoardSidebar = ({ children, role }) => {
             </li>
             <li className="py-4 border-b border-gray-300 flex items-center gap-2">
               <CiBoxList className="text-lg" />
-              <Link href="/dashboard/my-posts" className="text-black">
+              <Link href="/Admin/all-posts" className="text-black">
                 All Posts
               </Link>
             </li>

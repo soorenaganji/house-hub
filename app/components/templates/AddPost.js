@@ -48,7 +48,7 @@ const AddPost = () => {
       const response = await createPost(updatedFormData);
       console.log(response);
       toast.success("Post created successfully!");
-      // router.push("/dashboard/my-posts");
+      router.push("/dashboard/my-posts");
       setFormData({
         title: "",
         description: "",

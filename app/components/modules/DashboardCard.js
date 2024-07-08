@@ -61,7 +61,7 @@ const DashboardCard = ({ data }) => {
           Edit
         </Link>
         <Link
-          href={`my-posts/${data._id}`}
+          href={`/feed/${data._id}`}
           className="px-3 py-2 flex-shrink-0 text-sm border-blue-500 border-t border-b   text-blue-500  flex items-center justify-start hover:text-white hover:bg-blue-500 transition-all duration-150 "
         >
           Preview
