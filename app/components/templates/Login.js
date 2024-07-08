@@ -30,27 +30,25 @@ const Login = () => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-
-    toast.promise(
-      signIn("credentials", {
-        email: data.email,
-        password: data.password,
-        redirect: false,
-      }).then((res) => {
-        console.log(res);
-        if (res.status === 200) {
-          router.push("/");
-          toast.success("You Logged In successfully");
-        } else {
-          toast.error(res.error);
+    if (!data.email || !data.password) {
+      toast.error("Please enter your email and password");
+    }else {
+      toast.promise(
+        signIn("credentials", {
+          email: data.email,
+          password: data.password,
+          redirect: false,
+        }).then((res) => {
+          console.log(res);
+        }),
+        {
+          loading: "Logging in...",
+          success: <b>You Logged In successfully!</b>,
+          error: <b>Failed to log in.</b>,
         }
-      }),
-      {
-        loading: "Logging in...",
-        success: <b>You Logged In successfully!</b>,
-        error: <b>Failed to log in.</b>,
-      }
-    );
+      );
+    }
+   
   };
 
   return (
