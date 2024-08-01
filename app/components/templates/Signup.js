@@ -74,7 +74,6 @@ const Signup = () => {
         // Automatically log in the user
         const { data } = res.config;
         const loginData = JSON.parse(data);
-        console.log(loginData);
         signIn("credentials", { ...loginData, redirect: false });
         router.push("/");
       } catch (err) {

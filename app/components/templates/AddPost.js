@@ -41,7 +41,7 @@ const AddPost = () => {
         images.map((image) => uploadImageToSupabase(image))
       );
 
-      console.log(imageUrls);
+ 
 
       // Add image paths to formData
       const updatedFormData = { ...formData, imageUrls };

@@ -19,7 +19,6 @@ const PostForm = ({
   onDrop,
 }) => {
   const { data: session } = useSession();
-  console.log(session);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({

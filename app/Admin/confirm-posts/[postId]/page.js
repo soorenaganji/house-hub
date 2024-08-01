@@ -13,7 +13,7 @@ const AdminPostView = async ({ params }) => {
   const user = await User.findOne({ email: session.user.email });
   if (user.role !== "ADMIN") redirect("/dashboard");
   const post = await Profile.findById(id);
-  console.log(post);
+ 
   return (
     <>
       <PostView data={post}  />

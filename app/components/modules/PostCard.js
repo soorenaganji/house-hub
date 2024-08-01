@@ -24,7 +24,6 @@ const PostCard = ({
   published,
 }) => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
-  console.log(size);
   const handleImageUrl = () => {
     if (
       imageUrls &&

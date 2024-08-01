@@ -32,7 +32,6 @@ const uploadImageToSupabase = async (file) => {
 
     // Generate the public URL
     const urlData = supabase.storage.from("HouseHub").getPublicUrl(filePath);
-    console.log(urlData.data.publicUrl);
     return urlData.data.publicUrl
   };
 
@@ -40,7 +39,6 @@ const uploadImageToSupabase = async (file) => {
     try {
       // Extract file path after 'HouseHub/'
       const filePath = imageUrl.split('/HouseHub/')[1];
-      console.log('File path:', filePath); // Debug log
   
       if (!filePath) {
         throw new Error('Invalid image URL');
@@ -54,7 +52,6 @@ const uploadImageToSupabase = async (file) => {
         throw error;
       }
   
-      console.log('Image deleted successfully');
     } catch (error) {
       console.error('Error deleting image:', error.message);
       throw new Error('Error deleting image');

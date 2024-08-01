@@ -1,7 +1,6 @@
 import AdminCard from "../modules/AdminCard";
 
 const ConfirmPost = async ({ posts }) => {
-  console.log(posts);
   return (
     <div
       className={

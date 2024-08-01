@@ -17,7 +17,7 @@ const MyPosts = async () => {
         },
       },
     ]);
-    console.log(user)
+    
     return (
         <>
          <Posts posts={user[0].posts} />   

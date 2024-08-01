@@ -6,7 +6,6 @@ import EditPost from "@/app/components/templates/EditPost";
 import Profile from "@/app/models/Profile";
 const PostEditPage = async ({ params }) => {
   const { editId } = params; // Extract the postId from the params
-  console.log(editId);
   async function fetchData(editId) {
     await connectDB();
     const session = await getServerSession(authOptions);
@@ -27,8 +26,6 @@ const PostEditPage = async ({ params }) => {
     }else {
       const post = await Profile.findOne({_id : editId});
     }
-
-    console.log(post);
     let formData = {};
     let images = [];
     if (post) {
@@ -56,7 +53,6 @@ const PostEditPage = async ({ params }) => {
     return { formData, images };
   }
   const { formData, images } = await fetchData(editId);
-  console.log(formData);
   return (
     <>
       {" "}

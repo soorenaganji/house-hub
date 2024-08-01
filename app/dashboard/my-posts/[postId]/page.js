@@ -5,8 +5,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 const page = async ({ params }) => {
   const id = params.postId;
-  console.log(id);
-  console.log(id);
   async function fetchData(id) {
     await connectDB();
     const session = await getServerSession(authOptions);
@@ -23,7 +21,6 @@ const page = async ({ params }) => {
     ]);
 
     const post = await user[0].posts.find((p) => p._id.valueOf() === id);
-    console.log(post);
     let postsData = {};
     let images = [];
     if (post) {

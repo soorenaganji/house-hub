@@ -38,11 +38,6 @@ const EditPost = ({ data, imageUrls, id }) => {
     setFormData(newData);
     setImages(imageUrls);
   }, []);
-  useEffect(() => {
-    console.log("images state :", images);
-    console.log("image urls:", imageUrls);
-  }, [imageUrls, images]);
-
   const onDrop = useCallback((acceptedFiles) => {
     setImages((prevImages) =>
       prevImages
@@ -96,8 +91,6 @@ const EditPost = ({ data, imageUrls, id }) => {
       };
 
       const response = await editPost(updatedFormData);
-
-      console.log(updatedFormData.size);
       router.push("/dashboard/my-posts");
       toast.success("Post edited successfully!");
       setFormData({
